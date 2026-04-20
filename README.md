@@ -1,2 +1,2 @@
-# Site de Séries
+# SeriesTV
 Desenvolver um website que os usuários poderão cadastrar séries que eles já assistiram ou que estão assistindo, podendo colocar diversos comentários sobre uma série que está assistindo no momento e uma resenha sobre a série que já assistiu. As séries mais bem avaliadas pelo público serão exibidas por gênero em uma Dashboard e com isso, permitir que os usuários possam observar quais são as melhores séries na atualidade e oferecerá também um simulador de tempo gasto em uma determinada série que o usuário queira assistir. 
