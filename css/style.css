@@ -69,6 +69,7 @@ body{
 .divLinks ul li img:hover{
     width: 45px;
 }
+/* Fim Header */
 
 /* Banner */
 .divContainerBanner{
@@ -135,6 +136,7 @@ body{
     font-family: "Cal Sans", sans-serif;
     font-weight: bold;
 }
+/* Fim Banner */
 
 /* Descrição */
 
@@ -227,3 +229,94 @@ body{
     font-size: 30px;
     line-height: 1.5;
 }
+/* Fim Descrição */
+
+/* Cadastro */
+.divContainerCadastro{
+    display: flex;
+    justify-content: center;
+}
+
+.divTitulo hr{
+    height: 5px;
+    background-color: #037eeb;
+    border: none;
+    width: 80px;
+}
+
+.divCadastro{
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    margin-top: 70px;
+    width: 50%;
+    height: 450px;
+    padding: 20px;
+    margin-bottom: 70px;
+    box-shadow: 8px 8px 10px gray;
+}
+
+
+.divInputs{
+    width: 100%;
+    height: 100%;
+    margin-top: 35px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.divInput1,
+.divInput2,
+.divInput3{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 30px;
+}
+
+.inputBase{
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.inputBase span{
+    font-family: "Roboto", sans-serif;
+}
+
+.inputBase input{
+    height: 40px;
+    border: 1px solid #0d2c82;
+    border-radius: 15px;
+    background-color: #c9c9c9;
+    padding-left: 10px;
+}
+
+.divButtonEntrar{
+    width: 100%;
+    margin-top: 15px;
+}
+
+.divButtonEntrar button{
+    height: 45px;
+    margin-top: 10px;
+    width: 100%;
+    font-size: 20px;
+    background-color: #037eeb;
+    color: white;
+    font-family: 'Times New Roman', Times, serif;
+    border: none;
+    cursor: pointer;
+    transition: all 0.5s;
+}
+
+.divButtonEntrar button:hover{
+    transform: scale(1.04);
+    background-color: #0d2c82;
+}
+
+/* Fim Cadastro */
