@@ -4,18 +4,18 @@
 
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100..700;1,100..700&display=swap');
 
-*{
+* {
     margin: 0;
     padding: 0;
 }
 
-body{
+body {
     background-color: #e5e7eb;
 }
 
 /* NavBar */
 
-.nav{
+.nav {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -24,20 +24,20 @@ body{
     width: 100%;
 }
 
-.divLogo{
+.divLogo {
     display: flex;
     justify-content: center;
     align-items: center;
     margin-left: 75px;
 }
 
-.divLinks{
+.divLinks {
     display: flex;
     flex-direction: row;
     width: 40%;
 }
 
-.divLinks ul{
+.divLinks ul {
     width: 100%;
     display: flex;
     flex-direction: row;
@@ -46,11 +46,11 @@ body{
     margin-right: 40px;
 }
 
-.divLinks ul li{
+.divLinks ul li {
     list-style: none;
 }
 
-.divLinks ul li a{
+.divLinks ul li a {
     text-decoration: none;
     color: #0d2c82;
     font-size: 18px;
@@ -59,22 +59,23 @@ body{
     transition: 0.8s;
 }
 
-.divLinks ul li a:hover{
+.divLinks ul li a:hover {
     font-size: 20px;
     color: #037eeb;
 }
 
-.divLinks ul li img{
+.divLinks ul li img {
     transition: 1s;
 }
 
-.divLinks ul li img:hover{
+.divLinks ul li img:hover {
     width: 45px;
 }
+
 /* Fim Header */
 
 /* Banner */
-.divContainerBanner{
+.divContainerBanner {
     display: flex;
     flex-direction: column;
     text-align: center;
@@ -82,7 +83,7 @@ body{
     align-items: center;
 }
 
-.divImgBanner{
+.divImgBanner {
     height: 800px;
     background-size: cover;
     background-position: center;
@@ -93,7 +94,7 @@ body{
     box-shadow: 0 8px 30px gray;
 }
 
-.tituloBanner{
+.tituloBanner {
     font-size: 60px;
     letter-spacing: 4px;
     color: white;
@@ -103,7 +104,7 @@ body{
     margin-top: -500px;
 }
 
-.subtituloBanner{
+.subtituloBanner {
     font-size: 30px;
     letter-spacing: 3px;
     color: white;
@@ -113,7 +114,7 @@ body{
 
 }
 
-.buttonBanner{
+.buttonBanner {
     width: 150px;
     height: 50px;
     letter-spacing: 2px;
@@ -125,24 +126,25 @@ body{
     transition: 0.5s;
 }
 
-.buttonBanner:hover{
+.buttonBanner:hover {
     width: 165px;
     height: 55px;
     background-color: #0d2c82;
 }
 
-.buttonBanner a{
+.buttonBanner a {
     text-decoration: none;
     color: white;
     font-size: 15px;
     font-family: "Cal Sans", sans-serif;
     font-weight: bold;
 }
+
 /* Fim Banner */
 
 /* Descrição */
 
-.divDescricao1Site{
+.divDescricao1Site {
     margin-top: 450px;
     display: flex;
     flex-direction: row;
@@ -150,13 +152,13 @@ body{
     align-items: center;
 }
 
-.divImgDescricao1{
+.divImgDescricao1 {
     margin: 0;
     height: 100%;
     position: relative;
 }
 
-.divTextoDescricao1{
+.divTextoDescricao1 {
     background-color: white;
     height: 450px;
     width: 800px;
@@ -171,22 +173,22 @@ body{
     transition: 1s;
 }
 
-.divTextoDescricao1:hover{
+.divTextoDescricao1:hover {
     height: 470px;
     width: 820px;
 }
 
-.divTextoDescricao1 h4{
+.divTextoDescricao1 h4 {
     color: #0d2c82;
     font-size: 35px;
 }
 
-.divTextoDescricao1 p{
+.divTextoDescricao1 p {
     font-size: 30px;
     line-height: 1.5;
 }
 
-.divDescricao2Site{
+.divDescricao2Site {
     margin-top: 100px;
     display: flex;
     flex-direction: row;
@@ -194,14 +196,14 @@ body{
     align-items: center;
 }
 
-.divImgDescricao2{
+.divImgDescricao2 {
     margin: 0;
     height: 100%;
     position: relative;
     z-index: 1;
 }
 
-.divTextoDescricao2{
+.divTextoDescricao2 {
     background-color: white;
     height: 450px;
     width: 800px;
@@ -217,38 +219,39 @@ body{
     transition: 1s;
 }
 
-.divTextoDescricao2:hover{
+.divTextoDescricao2:hover {
     height: 470px;
     width: 820px;
 }
 
-.divTextoDescricao2 h4{
+.divTextoDescricao2 h4 {
     color: #0d2c82;
     font-size: 35px;
 }
 
-.divTextoDescricao2 p{
+.divTextoDescricao2 p {
     font-size: 30px;
     line-height: 1.5;
 }
+
 /* Fim Descrição */
 
 /* Como Funciona */
-.containerComoFunciona{
+.containerComoFunciona {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     margin-top: 350px;
 }
 
-.bannerComoFunciona{
+.bannerComoFunciona {
     display: flex;
     flex-direction: column;
-    background-size: cover; 
+    background-size: cover;
     background-position: center;
 }
 
-.tituloComoFunciona{
+.tituloComoFunciona {
     color: #fff;
     padding: 15px;
     width: 23%;
@@ -261,7 +264,7 @@ body{
     z-index: 2;
 }
 
-.descComoFunciona{
+.descComoFunciona {
     width: 680px;
     text-align: justify;
     color: white;
@@ -275,18 +278,18 @@ body{
     z-index: 2;
 }
 
-.imgBannerComoFunciona{
+.imgBannerComoFunciona {
     position: relative;
     filter: brightness(30%);
     z-index: 1;
 }
 
-.cardsComoFunciona{
+.cardsComoFunciona {
     display: flex;
     justify-content: space-around;
 }
 
-.cardComoFunciona{
+.cardComoFunciona {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -301,14 +304,14 @@ body{
     z-index: 2;
 }
 
-.subtituloComoFunciona{
+.subtituloComoFunciona {
     font-size: 24px;
     font-family: "IBM Plex Sans", sans-serif;
     text-align: center;
     color: #0d2c82;
 }
 
-.descCardComoFunciona{
+.descCardComoFunciona {
     text-align: center;
     font-family: "IBM Plex Sans", sans-serif;
 }
@@ -316,10 +319,11 @@ body{
 /* Fim Como Funciona */
 
 /* Carrosel */
-.containerCarrossel{
+.containerCarrossel {
     margin-top: 200px;
 }
-.carousel{
+
+.carousel {
     width: 78%;
     overflow-x: auto;
     margin: 3em auto;
@@ -331,13 +335,13 @@ body{
     scroll-marker-group: after;
 }
 
-.carousel::scroll-marker-group{
+.carousel::scroll-marker-group {
     display: flex;
     justify-content: center;
     gap: .5em;
 }
 
-.cardCarrossel::scroll-marker{
+.cardCarrossel::scroll-marker {
     content: '';
     height: 1em;
     width: 1em;
@@ -345,15 +349,15 @@ body{
     border-radius: 50%;
 }
 
-.cardCarrossel::scroll-marker:target-current{
+.cardCarrossel::scroll-marker:target-current {
     background-color: #0d2c82;
 }
 
-.carousel::-webkit-scrollbar{
+.carousel::-webkit-scrollbar {
     display: none;
 }
 
-.carousel::scroll-button(right){
+.carousel::scroll-button(right) {
     content: '→';
     border: none;
     background-color: #0d2c82;
@@ -371,7 +375,7 @@ body{
     translate: -50%;
 }
 
-.carousel::scroll-button(left){
+.carousel::scroll-button(left) {
     content: '←';
     border: none;
     background-color: #0d2c82;
@@ -389,12 +393,13 @@ body{
     translate: 50%;
 }
 
-.carousel::scroll-button(right):disabled, .carousel::scroll-button(left):disabled{
+.carousel::scroll-button(right):disabled,
+.carousel::scroll-button(left):disabled {
     opacity: 0.5;
     cursor: auto;
 }
 
-.cardCarrossel{
+.cardCarrossel {
     flex: 0 0 12em;
     height: 18em;
     width: 18em;
@@ -402,7 +407,8 @@ body{
     text-align: center;
     align-content: center;
 }
-.cardsDoCarrossel{
+
+.cardsDoCarrossel {
     scroll-snap-align: start;
     color: #fff;
     background-color: black;
@@ -410,15 +416,16 @@ body{
     padding: 15px;
 }
 
-.tituloCarrossel{
+.tituloCarrossel {
     color: #0d2c82;
     margin-left: 100px;
     font-size: 40px;
 }
+
 /* Fim Carrosel */
 
 /* Comece Já */
-.containerComeceJa{
+.containerComeceJa {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -427,19 +434,19 @@ body{
     margin-top: 100px;
 }
 
-.tituloComeceJa{
+.tituloComeceJa {
     font-size: 100px;
     letter-spacing: 2px;
     font-weight: 500;
 }
 
-.comece{
+.comece {
     display: flex;
     align-items: center;
     gap: 40px;
 }
 
-.comece button{
+.comece button {
     margin-top: 40px;
     width: 220px;
     height: 100px;
@@ -448,7 +455,7 @@ body{
     border-radius: 5px;
 }
 
-.comece button a{
+.comece button a {
     text-decoration: none;
     color: white;
     font-size: 20px;
@@ -456,7 +463,7 @@ body{
     letter-spacing: 2px;
 }
 
-.descComeceJa{
+.descComeceJa {
     font-size: 20px;
     font-family: "IBM Plex Sans", sans-serif;
     font-weight: 400;
@@ -465,7 +472,7 @@ body{
 /* Fim Comece Já */
 
 /* Footer */
-.containerFooter{
+.containerFooter {
     margin-top: 50px;
     display: flex;
     flex-direction: column;
@@ -474,7 +481,7 @@ body{
     height: 300px;
 }
 
-.primeiraParteFooter{
+.primeiraParteFooter {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -483,18 +490,18 @@ body{
     color: rgb(141, 141, 141);
 }
 
-.contatoFooter{
+.contatoFooter {
     display: flex;
     width: 5%;
     justify-content: space-around;
 }
 
-.contatoFooter svg{
+.contatoFooter svg {
     width: 15px;
     height: 15px;
 }
 
-.segundaParteFooter{
+.segundaParteFooter {
     display: flex;
     flex-direction: row;
     gap: 70px;
@@ -503,19 +510,19 @@ body{
     margin-left: 10%;
 }
 
-.segundaParteFooter a{
+.segundaParteFooter a {
     text-decoration: none;
     color: rgb(141, 141, 141);
 }
 
-.linkagemFooter ul{
+.linkagemFooter ul {
     height: 100%;
     display: flex;
     flex-direction: column;
     gap: 15px;
 }
 
-.terceiraParteFooter{
+.terceiraParteFooter {
     color: rgb(141, 141, 141);
     display: flex;
     justify-content: center;
@@ -524,30 +531,69 @@ body{
 /* Fim Footer */
 
 /* Cadastro */
-.divContainerCadastro{
+.divContainerCadastro {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.divTitulo hr{
+.divTitulo hr {
     height: 5px;
     background-color: #037eeb;
     border: none;
     width: 80px;
 }
 
-.imgBannerCadastro{
+.imgBannerCadastro {
     width: 100%;
     position: relative;
 }
 
-.imgBannerCadastro img{
+.imgBannerCadastro img {
     width: 100%;
     filter: brightness(30%);
 }
 
-.divCadastro{
+.alerta_erro {
+    display: flex;
+    justify-content: center;
+}
+
+.card_erro {
+    text-align: center;
+    display: none;
+    background-color: #fff;
+    color: #0d2c82;
+    width: 300px;
+    height: 80%;
+    border-radius: 4px;
+    border: #000000 3px solid;
+    padding: 10px;
+    position: relative;
+    z-index: 1;
+    margin-top: -45%;
+}
+
+.card_erro #mensagem_erro {
+    font-size: 18px;
+    font-family: "IBM Plex Sans";
+    font-weight: 400;
+}
+
+.loading-div {
+    width: 50px;
+    margin: auto;
+    display: none;
+    position: relative;
+    z-index: 1;
+}
+
+.loading-div img {
+    height: 50px;
+    width: 50px;
+}
+
+.divCadastro {
     display: flex;
     flex-direction: column;
     background-color: rgb(255, 255, 255, 0.2);
@@ -563,12 +609,12 @@ body{
     backdrop-filter: blur(5px);
 }
 
-.divIrParaLogin a{
+.divIrParaLogin a {
     color: #037eeb;
 }
 
 
-.divInputs{
+.divInputs {
     width: 100%;
     height: 100%;
     margin-top: 35px;
@@ -579,7 +625,7 @@ body{
 
 .divInput1,
 .divInput2,
-.divInput3{
+.divInput3 {
     height: 100%;
     width: 100%;
     display: flex;
@@ -588,18 +634,18 @@ body{
     gap: 30px;
 }
 
-.inputBase{
+.inputBase {
     display: flex;
     width: 100%;
     flex-direction: column;
     gap: 10px;
 }
 
-.inputBase span{
+.inputBase span {
     font-family: "Roboto", sans-serif;
 }
 
-.inputBase input{
+.inputBase input {
     height: 40px;
     border: 1px solid #0d2c82;
     border-radius: 15px;
@@ -607,12 +653,12 @@ body{
     padding-left: 10px;
 }
 
-.divButtonEntrar{
+.divButtonEntrar {
     width: 100%;
     margin-top: 15px;
 }
 
-.divButtonEntrar button{
+.divButtonEntrar button {
     height: 45px;
     margin-top: 10px;
     width: 100%;
@@ -625,7 +671,7 @@ body{
     transition: all 0.5s;
 }
 
-.divButtonEntrar button:hover{
+.divButtonEntrar button:hover {
     transform: scale(1.04);
     background-color: #0d2c82;
 }
@@ -633,24 +679,63 @@ body{
 /* Fim Cadastro */
 
 /* Login */
-.divContainerLogin{
+.divContainerLogin {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.imgBannerLogin{
+.imgBannerLogin {
     width: 100%;
     position: relative;
 }
 
-.imgBannerLogin img{
+.imgBannerLogin img {
     width: 100%;
     height: 600px;
     filter: brightness(30%);
 }
 
-.divLogin{
+.alerta_erro_login {
+    display: flex;
+    justify-content: center;
+}
+
+.card_erro_login {
+    text-align: center;
+    display: none;
+    background-color: #fff;
+    color: #0d2c82;
+    width: 300px;
+    height: 80%;
+    border-radius: 4px;
+    border: #000000 3px solid;
+    padding: 10px;
+    position: relative;
+    z-index: 1;
+    margin-top: -30%;
+}
+
+.card_erro_login #mensagem_erro_login {
+    font-size: 18px;
+    font-family: "IBM Plex Sans";
+    font-weight: 400;
+}
+
+.loading-div-login {
+    width: 50px;
+    margin: auto;
+    display: none;
+    position: relative;
+    z-index: 1;
+}
+
+.loading-div-login img {
+    height: 50px;
+    width: 50px;
+}
+
+.divLogin {
     display: flex;
     flex-direction: column;
     background-color: rgb(255, 255, 255, 0.2);
@@ -666,7 +751,7 @@ body{
     backdrop-filter: blur(5px);
 }
 
-.divIrParaCadastro a{
+.divIrParaCadastro a {
     color: #037eeb;
 }
 

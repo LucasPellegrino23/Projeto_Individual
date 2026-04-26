@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro</title>
-    <link rel="stylesheet" href="./css/style.css">
+    <title>Login</title>
+    <link rel="stylesheet" href="./css/estilo.css">
 </head>
+
 <body>
     <header>
         <nav class="nav">
@@ -23,53 +25,46 @@
         </nav>
     </header>
 
-    <div class="divContainerCadastro">
-        <div class="imgBannerCadastro">
+    <div class="divContainerLogin">
+        <div class="imgBannerLogin">
             <img src="./assets/seriesBackground.png" alt="">
         </div>
-        
-        <div class="divCadastro">
+
+        <div class="alerta_erro_login">
+            <div class="card_erro_login" id="cardErro">
+                <span id="mensagem_erro_login"></span>
+            </div>
+        </div>
+        <div class="divLogin">
             <div class="divTitulo">
-                <h1>Cadastre-se</h1>
+                <h1>Bem-vindo de Volta</h1>
                 <hr>
             </div>
             <div class="divInputs">
                 <div class="divInput1">
                     <div class="inputBase">
-                        <span>Nome</span>
-                        <input type="text" placeholder="Digite seu nome">
-                    </div>
-                    <div class="inputBase">
                         <span>Nome de Usuário</span>
-                        <input type="text" placeholder="Digite seu nome de usuário">
-                    </div>
-                </div>
-                <div class="divInput2">
-                    <div class="inputBase">
-                        <span>Email</span>
-                        <input type="text" placeholder="Digite seu email">
-                    </div>
-                    <div class="inputBase">
-                        <span>Telefone</span>
-                        <input type="text" placeholder="Digite seu telefone">
+                        <input id="nome_de_usuario_input" type="text" placeholder="Digite seu nome de usuário">
                     </div>
                 </div>
                 <div class="divInput2">
                     <div class="inputBase">
                         <span>Senha</span>
-                        <input type="password" placeholder="Digite sua senha">
-                    </div>
-                    <div class="inputBase">
-                        <span>Confirmar Senha</span>
-                        <input type="password" placeholder="Digite sua senha novamente">
+                        <input id="senha_input" type="password" placeholder="Digite sua senha">
                     </div>
                 </div>
-                <div class="divIrParaLogin">
-                    <p>Já possui uma conta? <span><a href="./login.html">Fazer Login</a></span></p>
+                <div class="divIrParaCadastro">
+                    <p>Não possui um cadastro? <span><a href="./cadastro.html">Fazer Cadastro</a></span></p>
                 </div>
                 <div class="divButtonEntrar">
-                    <button>Cadastrar</button>
+                    <button onclick="entrar()">Entrar</button>
                 </div>
+
+                <div id="div_aguardar" class="loading-div-login">
+                    <img src="./assets/circle-loading.gif" id="loading-gif">
+                </div>
+
+                <div id="div_erros_login"></div>
             </div>
         </div>
     </div>
@@ -100,24 +95,102 @@
                 </div>
             </div>
             <div class="segundaParteFooter">
-            <div class="linkagemFooter">
-                <ul>
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#sobre">Sobre</a></li>
-                    <li><a href="#comoFunciona">Como Funciona</a></li>
-                </ul>
+                <div class="linkagemFooter">
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#sobre">Sobre</a></li>
+                        <li><a href="#comoFunciona">Como Funciona</a></li>
+                    </ul>
+                </div>
+                <div class="linkagemFooter">
+                    <ul>
+                        <li><a href="avaliar.html">Avaliar</a></li>
+                        <li><a href="sobreMim.html">Sobre Mim</a></li>
+                    </ul>
+                </div>
             </div>
-            <div class="linkagemFooter">
-                <ul>
-                    <li><a href="avaliar.html">Avaliar</a></li>
-                    <li><a href="sobreMim.html">Sobre Mim</a></li>
-                </ul>
+            <div class="terceiraParteFooter">
+                <p>© 2026 SeriesTV. Todos os direitos reservados.</p>
             </div>
-        </div>
-        <div class="terceiraParteFooter">
-            <p>© 2026 SeriesTV. Todos os direitos reservados.</p>
-        </div>
         </div>
     </footer>
 </body>
+
 </html>
+
+<script>
+
+    function finalizarAguardar() {
+        div_aguardar.style.display = "none";
+    }
+
+    function entrar() {
+        // aguardar();
+
+        var nomeDeUsuarioVar = nome_de_usuario_input.value;
+        var senhaVar = senha_input.value;
+
+        if (nomeDeUsuarioVar == "" || senhaVar == "") {
+            cardErro.style.display = "block"
+            mensagem_erro_login.innerHTML = "(Mensagem de erro para todos os campos em branco)";
+            return false;
+        }
+        else {
+            setInterval(sumirMensagem, 5000)
+        }
+
+        console.log("FORM LOGIN: ", nomeDeUsuarioVar);
+        console.log("FORM SENHA: ", senhaVar);
+
+        fetch("/usuarios/autenticar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                nomeDeUsuarioServer: nomeDeUsuarioVar,
+                senhaServer: senhaVar
+            })
+        }).then(function (resposta) {
+            console.log("ESTOU NO THEN DO entrar()!")
+
+            if (resposta.ok) {
+                console.log(resposta);
+
+                resposta.json().then(json => {
+                    console.log(json);
+                    console.log(JSON.stringify(json));
+                    sessionStorage.NOME_USUARIO = json.nome_usuario;
+                    sessionStorage.NOME_DE_USUARIO = json.nome_de_usuario;
+                    sessionStorage.EMAIL_USUARIO = json.email;
+                    sessionStorage.TELEFONE_USUARIO = json.telefone;
+                    sessionStorage.ID_USUARIO = json.id_usuario;
+
+                    setTimeout(function () {
+                        window.location = "avaliar.html";
+                    }, 1000); // apenas para exibir o loading
+
+                });
+
+            } else {
+
+                console.log("Houve um erro ao tentar realizar o login!");
+
+                resposta.text().then(texto => {
+                    console.error(texto);
+                    finalizarAguardar(texto);
+                });
+            }
+
+        }).catch(function (erro) {
+            console.log(erro);
+        })
+
+        return false;
+    }
+
+    function sumirMensagem() {
+        cardErro.style.display = "none"
+    }
+
+</script>
