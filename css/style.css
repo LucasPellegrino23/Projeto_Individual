@@ -234,16 +234,93 @@ body{
 /* Fim Descrição */
 
 /* Como Funciona */
+.containerComoFunciona{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin-top: 350px;
+}
 
+.bannerComoFunciona{
+    display: flex;
+    flex-direction: column;
+    background-size: cover; 
+    background-position: center;
+}
+
+.tituloComoFunciona{
+    color: #fff;
+    padding: 15px;
+    width: 23%;
+    height: 30px;
+    font-size: 50px;
+    font-weight: 500;
+    margin-left: 100px;
+    display: flex;
+    align-items: center;
+    z-index: 2;
+}
+
+.descComoFunciona{
+    width: 680px;
+    text-align: justify;
+    color: white;
+    font-family: "IBM Plex Sans", sans-serif;
+    font-weight: 300;
+    font-size: 22px;
+    margin-top: 20px;
+    margin-left: 170px;
+    position: relative;
+    margin-bottom: -20%;
+    z-index: 2;
+}
+
+.imgBannerComoFunciona{
+    position: relative;
+    filter: brightness(30%);
+    z-index: 1;
+}
+
+.cardsComoFunciona{
+    display: flex;
+    justify-content: space-around;
+}
+
+.cardComoFunciona{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 230px;
+    height: 230px;
+    padding: 20px;
+    background-color: white;
+    align-items: center;
+    position: relative;
+    margin-top: -7%;
+    box-shadow: 8px 8px 30px rgb(58, 58, 58);
+    z-index: 2;
+}
+
+.subtituloComoFunciona{
+    font-size: 24px;
+    font-family: "IBM Plex Sans", sans-serif;
+    text-align: center;
+    color: #0d2c82;
+}
+
+.descCardComoFunciona{
+    text-align: center;
+    font-family: "IBM Plex Sans", sans-serif;
+}
 
 /* Fim Como Funciona */
 
 /* Carrosel */
 .containerCarrossel{
-    margin-top: 100px;
+    margin-top: 200px;
 }
 .carousel{
-    width: 49.5%;
+    width: 78%;
     overflow-x: auto;
     margin: 3em auto;
     display: flex;
@@ -319,8 +396,8 @@ body{
 
 .cardCarrossel{
     flex: 0 0 12em;
-    height: 12em;
-    width: 12em;
+    height: 18em;
+    width: 18em;
     object-fit: cover;
     text-align: center;
     align-content: center;
@@ -387,10 +464,70 @@ body{
 
 /* Fim Comece Já */
 
+/* Footer */
+.containerFooter{
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    background-color: black;
+    font-family: "IBM Plex Sans";
+    height: 300px;
+}
+
+.primeiraParteFooter{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 30px;
+    color: rgb(141, 141, 141);
+}
+
+.contatoFooter{
+    display: flex;
+    width: 5%;
+    justify-content: space-around;
+}
+
+.contatoFooter svg{
+    width: 15px;
+    height: 15px;
+}
+
+.segundaParteFooter{
+    display: flex;
+    flex-direction: row;
+    gap: 70px;
+    height: 100px;
+    margin-top: 50px;
+    margin-left: 10%;
+}
+
+.segundaParteFooter a{
+    text-decoration: none;
+    color: rgb(141, 141, 141);
+}
+
+.linkagemFooter ul{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.terceiraParteFooter{
+    color: rgb(141, 141, 141);
+    display: flex;
+    justify-content: center;
+}
+
+/* Fim Footer */
+
 /* Cadastro */
 .divContainerCadastro{
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
 }
 
 .divTitulo hr{
@@ -400,16 +537,34 @@ body{
     width: 80px;
 }
 
+.imgBannerCadastro{
+    width: 100%;
+    position: relative;
+}
+
+.imgBannerCadastro img{
+    width: 100%;
+    filter: brightness(30%);
+}
+
 .divCadastro{
     display: flex;
     flex-direction: column;
-    background-color: white;
+    background-color: rgb(255, 255, 255, 0.2);
+    color: white;
     margin-top: 70px;
     width: 50%;
     height: 450px;
     padding: 20px;
     margin-bottom: 70px;
-    box-shadow: 8px 8px 10px gray;
+    position: relative;
+    margin-top: -45%;
+    margin-bottom: 8%;
+    backdrop-filter: blur(5px);
+}
+
+.divIrParaLogin a{
+    color: #037eeb;
 }
 
 
@@ -477,3 +632,42 @@ body{
 
 /* Fim Cadastro */
 
+/* Login */
+.divContainerLogin{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.imgBannerLogin{
+    width: 100%;
+    position: relative;
+}
+
+.imgBannerLogin img{
+    width: 100%;
+    height: 600px;
+    filter: brightness(30%);
+}
+
+.divLogin{
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(255, 255, 255, 0.2);
+    color: white;
+    margin-top: 70px;
+    width: 50%;
+    height: 350px;
+    padding: 20px;
+    margin-bottom: 70px;
+    position: relative;
+    margin-top: -33%;
+    margin-bottom: 3%;
+    backdrop-filter: blur(5px);
+}
+
+.divIrParaCadastro a{
+    color: #037eeb;
+}
+
+/* Fim Login */
