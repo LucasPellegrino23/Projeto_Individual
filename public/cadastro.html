@@ -32,11 +32,6 @@
       <img src="./assets/seriesBackground.png" alt="">
     </div>
 
-    <div class="alerta_erro">
-      <div class="card_erro" id="cardErro">
-        <span id="mensagem_erro"></span>
-      </div>
-    </div>
     <div class="divCadastro">
       <div class="divTitulo">
         <h1>Cadastre-se</h1>
@@ -47,30 +42,60 @@
           <div class="inputBase">
             <span>Nome</span>
             <input id="nome_input" type="text" placeholder="Digite seu nome">
+            <div class="alerta_erro">
+              <div class="card_erro" id="cardErroNome">
+                <span id="mensagem_erro_nome"></span>
+              </div>
+            </div>
           </div>
           <div class="inputBase">
             <span>Nome de Usuário</span>
             <input id="nome_de_usuario_input" type="text" placeholder="Digite seu nome de usuário">
+            <div class="alerta_erro">
+              <div class="card_erro" id="cardErroNomeDeUsuario">
+                <span id="mensagem_erro_nome_de_usuario"></span>
+              </div>
+            </div>
           </div>
         </div>
         <div class="divInput2">
           <div class="inputBase">
             <span>Email</span>
-            <input id="email_input" type="text" placeholder="Digite seu email">
+            <input id="email_input" type="text" placeholder="name@example.example">
+            <div class="alerta_erro">
+              <div class="card_erro" id="cardErroEmail">
+                <span id="mensagem_erro_email"></span>
+              </div>
+            </div>
           </div>
           <div class="inputBase">
             <span>Telefone</span>
-            <input id="telefone_input" type="text" placeholder="Digite seu telefone">
+            <input id="telefone_input" type="text" placeholder="11999999999">
+            <div class="alerta_erro">
+              <div class="card_erro" id="cardErroTelefone">
+                <span id="mensagem_erro_telefone"></span>
+              </div>
+            </div>
           </div>
         </div>
         <div class="divInput2">
           <div class="inputBase">
             <span>Senha</span>
-            <input id="senha_input" type="password" placeholder="Digite sua senha">
+            <input id="senha_input" type="password" placeholder="********">
+            <div class="alerta_erro">
+              <div class="card_erro" id="cardErroSenha">
+                <span id="mensagem_erro_senha"></span>
+              </div>
+            </div>
           </div>
           <div class="inputBase">
             <span>Confirmar Senha</span>
-            <input id="confirmacao_senha_input" type="password" placeholder="Digite sua senha novamente">
+            <input id="confirmacao_senha_input" type="password" placeholder="********">
+            <div class="alerta_erro">
+              <div class="card_erro" id="cardErroConfirmacaoSenha">
+                <span id="mensagem_erro_confirmacao_senha"></span>
+              </div>
+            </div>
           </div>
         </div>
         <div class="divIrParaLogin">
@@ -82,7 +107,6 @@
         <div id="div_aguardar" class="loading-div">
           <img src="./assets/circle-loading.gif" id="loading-gif" />
         </div>
-        <div id="div_erros_login"></div>
       </div>
     </div>
   </div>
@@ -138,6 +162,20 @@
 
 <script>
 
+  function mostrarErro(spanId, cardId, mensagem) {
+    document.getElementById(spanId).innerHTML = mensagem;
+    document.getElementById(cardId).style.display = 'block';
+  }
+
+  function limparErros() {
+    document.querySelectorAll('.card_erro').forEach(card => {
+      card.style.display = 'none';
+    });
+    document.querySelectorAll('.card_erro span').forEach(span => {
+      span.innerHTML = '';
+    });
+  }
+
   function finalizarAguardar() {
     div_aguardar.style.display = "none";
   }
@@ -149,13 +187,11 @@
     telefone_input.value = "";
     senha_input.value = "";
     confirmacao_senha_input.value = "";
-}
+  }
 
   function cadastrar() {
-    // aguardar();
+    limparErros();
 
-    //Recupere o valor da nova input pelo nome do id
-    // Agora vá para o método fetch logo abaixo
     var nomeVar = nome_input.value;
     var nomeDeUsuarioVar = nome_de_usuario_input.value;
     var emailVar = email_input.value;
@@ -163,68 +199,142 @@
     var senhaVar = senha_input.value;
     var confirmacaoSenhaVar = confirmacao_senha_input.value;
 
-    // Verificando se há algum campo em branco
-    if (
-      nomeVar == "" ||
-      nomeDeUsuarioVar == "" ||
-      emailVar == "" ||
-      telefoneVar == "" ||
-      senhaVar == "" ||
-      confirmacaoSenhaVar == ""
-    ) {
-      cardErro.style.display = "block";
-      mensagem_erro.innerHTML =
-        "(Mensagem de erro para todos os campos em branco)";
+    var numeros = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
+    var listaCaracteresEspeciais = [
+      '!', '"', '#', '$', '%', '&', "'", '(', ')', '*',
+      '+', ',', '-', '.', '/', ':', ';', '<', '=', '>',
+      '?', '@', '[', '\\', ']', '^', '_', '`', '{', '|',
+      '}', '~'
+    ];
 
-      return false;
+    var nomeInvalido = 0;
+    if (nomeVar !== '' && !nomeVar[0].includes(' ')) {
+      for (let i = 0; i < nomeVar.length; i++) {
+        if (nomeVar[i] == numeros[i]) {
+          nomeInvalido++;
+        }
+        if (nomeVar[i].toUpperCase() == nomeVar[i].toLowerCase()) {
+          if (!nomeVar[i].includes(' ')) {
+            nomeInvalido++;
+          }
+        }
+      }
+      if (nomeInvalido > 0) {
+        mostrarErro('mensagem_erro_nome', 'cardErroNome', 'Nome Inválido');
+      } else {
+        mostrarErro('mensagem_erro_nome', 'cardErroNome', 'Nome Válido');
+      }
     } else {
-      setInterval(sumirMensagem, 5000);
+      nomeInvalido++;
+      mostrarErro('mensagem_erro_nome', 'cardErroNome', 'Nome Inválido');
     }
 
-    // Enviando o valor da nova input
-    fetch("/usuarios/cadastrar", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        // crie um atributo que recebe o valor recuperado aqui
-        // Agora vá para o arquivo routes/usuario.js
-        nomeServer: nomeVar,
-        nomeDeUsuarioServer: nomeDeUsuarioVar,
-        emailServer: emailVar,
-        telefoneServer: telefoneVar,
-        senhaServer: senhaVar,
-      }),
-    })
-      .then(function (resposta) {
-        console.log("resposta: ", resposta);
-
-        if (resposta.ok) {
-          cardErro.style.display = "block";
-
-          mensagem_erro.innerHTML =
-            "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
-
-          setTimeout(() => {
-            window.location = "login.html";
-          }, "2000");
-
-          limparFormulario();
-          finalizarAguardar();
-        } else {
-          throw "Houve um erro ao tentar realizar o cadastro!";
+    var nomeDeUsuarioInvalido = 0;
+    if (nomeDeUsuarioVar !== '' && !nomeDeUsuarioVar[0].includes(' ')) {
+      for (let i = 0; i < nomeDeUsuarioVar.length; i++) {
+        if (nomeDeUsuarioVar[i] == numeros[i]) {
+          nomeDeUsuarioInvalido++;
         }
+        if (nomeDeUsuarioVar[i].toUpperCase() == nomeDeUsuarioVar[i].toLowerCase()) {
+          if (nomeDeUsuarioVar[i].includes(' ')) {
+            nomeDeUsuarioInvalido++;
+          }
+        }
+      }
+      if (nomeDeUsuarioInvalido > 0) {
+        mostrarErro('mensagem_erro_nome_de_usuario', 'cardErroNomeDeUsuario', 'Nome de Usuário Inválido');
+      } else {
+        mostrarErro('mensagem_erro_nome_de_usuario', 'cardErroNomeDeUsuario', 'Nome de Usuário Válido');
+      }
+    } else {
+      nomeDeUsuarioInvalido++;
+      mostrarErro('mensagem_erro_nome_de_usuario', 'cardErroNomeDeUsuario', 'Nome de Usuário Inválido');
+    }
+
+    var emailInvalido = 0;
+    if (emailVar.includes('@') && emailVar.includes('.') && !emailVar.includes(' ')) {
+      mostrarErro('mensagem_erro_email', 'cardErroEmail', 'Email Válido');
+    } else {
+      emailInvalido++;
+      mostrarErro('mensagem_erro_email', 'cardErroEmail', 'Email Inválido');
+    }
+
+    var telefoneCerto = 0;
+    if (telefoneVar != '' && telefoneVar.length == 11) {
+      for (let i = 0; i < telefoneVar.length; i++) {
+        for (let j = 0; j < numeros.length; j++) {
+          if (telefoneVar[i] == numeros[j]) {
+            telefoneCerto++;
+          }
+        }
+      }
+      if (telefoneCerto > 0) {
+        mostrarErro('mensagem_erro_telefone', 'cardErroTelefone', 'Telefone Válido');
+      } else {
+        mostrarErro('mensagem_erro_telefone', 'cardErroTelefone', 'Telefone Inválido');
+      }
+    } else {
+      mostrarErro('mensagem_erro_telefone', 'cardErroTelefone', 'Telefone Inválido');
+    }
+
+    var senhaCerto = 0;
+    if (senhaVar != '' && !senhaVar.includes(' ') && senhaVar.length >= 8) {
+      for (let i = 0; i < listaCaracteresEspeciais.length; i++) {
+        if (senhaVar.includes(listaCaracteresEspeciais[i])) {
+          senhaCerto++;
+        }
+      }
+      if (senhaCerto > 0) {
+        mostrarErro('mensagem_erro_senha', 'cardErroSenha', 'Senha Válida');
+      } else {
+        mostrarErro('mensagem_erro_senha', 'cardErroSenha', 'Senha Inválida');
+      }
+    } else {
+      mostrarErro('mensagem_erro_senha', 'cardErroSenha', 'Senha Inválida');
+    }
+
+    if (confirmacaoSenhaVar !== senhaVar || confirmacaoSenhaVar === '') {
+      mostrarErro('mensagem_erro_confirmacao_senha', 'cardErroConfirmacaoSenha', 'As senhas não coincidem');
+    } else {
+      mostrarErro('mensagem_erro_confirmacao_senha', 'cardErroConfirmacaoSenha', 'Senhas Coincidem');
+    }
+
+    if (nomeInvalido == 0 && nomeDeUsuarioInvalido == 0 && emailInvalido == 0 && telefoneCerto > 0 && senhaCerto > 0 && senhaVar === confirmacaoSenhaVar) {
+      fetch("/usuarios/cadastrar", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          nomeServer: nomeVar,
+          nomeDeUsuarioServer: nomeDeUsuarioVar,
+          emailServer: emailVar,
+          telefoneServer: telefoneVar,
+          senhaServer: senhaVar,
+        }),
       })
-      .catch(function (resposta) {
-        console.log(`#ERRO: ${resposta}`);
-        finalizarAguardar();
-      });
+        .then(function (resposta) {
+          console.log("resposta: ", resposta);
 
-    return false;
-  }
+          if (resposta.ok) {
+            alert("Cadastro realizado com sucesso! Redirecionando para tela de Login...");
 
-  function sumirMensagem() {
-    cardErro.style.display = "none";
+            setTimeout(() => {
+              window.location = "login.html";
+            }, "2000");
+
+            limparFormulario();
+            finalizarAguardar();
+          } else {
+            throw "Houve um erro ao tentar realizar o cadastro!";
+          }
+        })
+        .catch(function (resposta) {
+          console.log(`#ERRO: ${resposta}`);
+          finalizarAguardar();
+        });
+
+      return false;
+    }
   }
 </script>

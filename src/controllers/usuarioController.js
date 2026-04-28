@@ -5,7 +5,7 @@ function autenticar(req, res) {
     var senha = req.body.senhaServer;
 
     if (nome_de_usuario == undefined) {
-        res.status(400).send("Seu email está undefined!");
+        res.status(400).send("Seu nome de usuário está indefinido!");
     } else if (senha == undefined) {
         res.status(400).send("Sua senha está indefinida!");
     } else {
@@ -21,8 +21,8 @@ function autenticar(req, res) {
 }
             ).catch(
                 function (erro) {
-                    console.log(erro);
-                    console.log("\nHouve um erro ao realizar o login! Erro: ", erro.sqlMessage);
+                    alert(erro);
+                    alert("\nHouve um erro ao realizar o login! Erro: ", erro.sqlMessage);
                     res.status(500).json(erro.sqlMessage);
                 }
             );
@@ -59,8 +59,8 @@ function cadastrar(req, res) {
                 }
             ).catch(
                 function (erro) {
-                    console.log(erro);
-                    console.log(
+                    alert(erro);
+                    alert(
                         "\nHouve um erro ao realizar o cadastro! Erro: ",
                         erro.sqlMessage
                     );
