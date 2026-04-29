@@ -1,0 +1,89 @@
+@import url('https://fonts.googleapis.com/css2?family=Cal+Sans&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100..700;1,100..700&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    background-color: #e5e7eb;
+}
+
+.containerPagina{
+    display: flex;
+    width: 250px;
+}
+
+.navegacao{
+    height: 729px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    background-color: white;
+}
+
+.divLogo{
+    display: flex;
+    justify-content: center;
+}
+
+.divLogo img{
+    width: 150px;
+}
+
+.divLinks{
+    height: 35%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.divLinks button{
+    width: 150px;
+    height: 40px;
+    background-color: #037eeb;
+    border: 1px solid black;
+    border-radius: 15px;
+    box-shadow: 5px 5px 10px gray;
+    cursor: pointer;
+    transition: all 1s;
+}
+
+.divLinks a{
+    text-decoration: none;
+    font-family: "IBM Plex Sans";
+    font-weight: 900;
+    color: white;
+    font-size: 15px;
+}
+
+.divLinks h3 a{
+    text-decoration: none;
+    font-family: "IBM Plex Sans";
+    font-weight: 900;
+    color: black;
+    font-size: 18px;
+    transition: all 1s;
+}
+
+.divLinks h3 a:hover{
+    color: #037eeb;
+}
+
+.divLinks .ative{
+    text-decoration: none;
+    background-color: #0d2c82;
+}
+
+.divLinks button:hover{
+    transform: scale(1.1);
+    background-color: #0d2c82;
+    
+}
+
