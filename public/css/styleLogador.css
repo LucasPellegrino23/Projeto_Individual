@@ -13,18 +13,20 @@ body{
     background-color: #e5e7eb;
 }
 
+/* Navegação */
 .containerPagina{
     display: flex;
-    width: 250px;
+    width: 100%;
 }
 
 .navegacao{
     height: 729px;
-    width: 100%;
+    width: 20%;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    background-color: white;
+    background-color: black;
+    text-align: center;
 }
 
 .divLogo{
@@ -36,6 +38,11 @@ body{
     width: 150px;
 }
 
+.h3Ola{
+    color: white;
+    font-family: "IBM Plex Sans";
+}
+
 .divLinks{
     height: 35%;
     display: flex;
@@ -45,12 +52,12 @@ body{
 }
 
 .divLinks button{
-    width: 150px;
+    width: 200px;
     height: 40px;
     background-color: #037eeb;
-    border: 1px solid black;
+    border: 1px solid white;
     border-radius: 15px;
-    box-shadow: 5px 5px 10px gray;
+    box-shadow: 5px 5px 10px #0d2c82;
     cursor: pointer;
     transition: all 1s;
 }
@@ -65,9 +72,9 @@ body{
 
 .divLinks h3 a{
     text-decoration: none;
-    font-family: "IBM Plex Sans";
+    font-family: "Roboto", sans-serif;
     font-weight: 900;
-    color: black;
+    color: white;
     font-size: 18px;
     transition: all 1s;
 }
@@ -87,3 +94,80 @@ body{
     
 }
 
+/* Fim Navegação */
+
+/* Informações do Usuário */
+.informacoesUsuario{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80%;
+}
+
+.hello{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 100%;
+    width: 80%;
+}
+
+.divImgUsuario{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 250px;
+}
+
+.divImgUsuario h3{
+    font-family: "IBM Plex Sans";
+    color: #0d2c82;
+    font-size: 25px;
+}
+
+.imagemUsuario{
+    height: 210px;
+    width: 210px;
+    border-radius: 50%;
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.imagemUsuario img{
+    border-radius: 50%;
+}
+
+.divInformacoes{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    height: 100px;
+    width: 100%;
+}
+
+.divInformacoes h3{
+    font-family: "IBM Plex Sans";
+    margin-left: 20px;
+    color: #0d2c82;
+    font: 25px;
+}
+
+.nomeUsuario,
+.nomeDeUsuario,
+.mailUsuario,
+.telefoneUsuario {
+    background-color: #a9a9a9;
+    width: 98%;
+    padding: 10px;
+    font-size: 20px;
+    font-family: "Roboto", sans-serif;
+    border-radius: 10px;
+}
+
+.telefoneUsuario{
+    margin-bottom: 15px;
+}
+/* Fim Informações de Usuário */

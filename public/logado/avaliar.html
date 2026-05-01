@@ -1,31 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Perfil do Usuário</title>
-    
+    <title>Avaliar Séries</title>
+
     <link rel="stylesheet" href="../css/styleLogador.css">
     <script src="../js/sessao.js"></script>
     <script src="../js/alerta.js"></script>
 </head>
-<body>
+
+<body onload="validarSessao()">
     <div class="containerPagina">
         <div class="navegacao">
             <div class="divLogo">
                 <img src="../assets/logo.png" alt="Logo SeriesTv">
             </div>
-            
+            <h3 class="h3Ola">Olá, <span id="b_usuario"></span>!</h3>
+
             <div class="divLinks">
                 <button><a href="./perfil.html">Perfil do Usuário</a></button>
                 <button class="ative"><a href="./avaliar.html">Avaliar Séries</a></button>
                 <button><a href="./dashboard.html">Dashboard</a></button>
                 <button><a href="./avaliacoes.html">Avaliações</a></button>
-                <h3 onclick="limparSessao()"><a href="./avaliacoes.html">Sair</a></h3>
+                <h3 onclick="limparSessao()"><a href="../index.html">Sair</a></h3>
             </div>
         </div>
 
-        
+        <div class="informacoesUsuario">
+            <div class="hello">
+                <div class="divImgUsuario">
+                    <h3>Foto de Perfil</h3>
+                    <div class="imagemUsuario" id="imgUsuario"></div>
+                </div>
+
+                <div class="divInformacoes">
+                    <h3>Nome Completo:</h3>
+                    <span class="nomeUsuario" id="nomeUsuario"></span>
+                </div>
+                <div class="divInformacoes">
+                    <h3>Nome de Usuário</h3>
+                    <span class="nomeDeUsuario" id="nomeDeUsuario"></span>
+                </div>
+                <div class="divInformacoes">
+                    <h3>Email:</h3>
+                    <span class="mailUsuario" id="emailUsuario"></span>
+                </div>
+                <div class="divInformacoes">
+                    <h3>Telefone:</h3>
+                   <span class="telefoneUsuario" id="telUsuario"></span> 
+                </div>
+            </div>
+        </div>
     </div>
 </body>
+
 </html>
+
+<script>
+    function validarSessao() {
+        var email = sessionStorage.EMAIL_USUARIO;
+        var imagem = sessionStorage.IMAGEM_USUARIO;
+        var nome = sessionStorage.NOME_USUARIO;
+        var nomeDeUsuarioInput = sessionStorage.NOME_DE_USUARIO 
+        var telefone = sessionStorage.TELEFONE_USUARIO 
+        
+                     
+        var b_usuario = document.getElementById("b_usuario");
+
+        if (email != null && nome != null && imagem != null) {
+            imgUsuario.innerHTML = `<img src="${imagem}" height="200px" width="200px">`;
+            b_usuario.innerHTML = nome;
+            nomeUsuario.innerHTML = nome;
+            nomeDeUsuario.innerHTML = nomeDeUsuarioInput;
+            emailUsuario.innerHTML = email;
+            telUsuario.innerHTML = telefone;
+        } else {
+            window.location = "../login.html";
+        }
+    }
+</script>

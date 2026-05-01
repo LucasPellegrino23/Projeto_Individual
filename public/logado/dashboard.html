@@ -6,34 +6,48 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AquaTech | Dashboards</title>
+    <title>SeriesTv | Dashboards</title>
 
     <link rel="stylesheet" href="../css/styleLogador.css">
     <script src="../js/sessao.js"></script>
     <script src="../js/alerta.js"></script>
 
-<body>
+<body onload="validarSessao()">
 
     <div class="containerPagina">
         <div class="navegacao">
             <div class="divLogo">
                 <img src="../assets/logo.png" alt="Logo SeriesTv">
             </div>
+            <h3 class="h3Ola">Olá, <span id="b_usuario"></span>!</h3>
 
             <div class="divLinks">
                 <button><a href="./perfil.html">Perfil do Usuário</a></button>
                 <button><a href="./avaliar.html">Avaliar Séries</a></button>
                 <button class="ative"><a href="./dashboard.html">Dashboard</a></button>
                 <button><a href="./avaliacoes.html">Avaliações</a></button>
-                <h3 onclick="limparSessao()"><a href="./avaliacoes.html">Sair</a></h3>
+                <h3 onclick="limparSessao()"><a href="../index.html">Sair</a></h3>
             </div>
         </div>
-    </div>
-</body>
+    </body>
 
 </html>
 
 <script>
+
+    function validarSessao() {
+        var email = sessionStorage.EMAIL_USUARIO;
+        var nome = sessionStorage.NOME_USUARIO;
+        
+                     
+        var b_usuario = document.getElementById("b_usuario");
+
+        if (email != null && nome != null && imagem != null) {
+            b_usuario.innerHTML = nome;
+        } else {
+            window.location = "../login.html";
+        }
+    }
     b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
 
     let proximaAtualizacao;

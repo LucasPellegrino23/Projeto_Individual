@@ -78,7 +78,7 @@
             </div>
           </div>
         </div>
-        <div class="divInput2">
+        <div class="divInput3">
           <div class="inputBase">
             <span>Senha</span>
             <input id="senha_input" type="password" placeholder="********">
@@ -98,21 +98,33 @@
             </div>
           </div>
         </div>
+        <div class="divInput4">
+          <div class="inputBase">
+            <span>Imagem</span>
+            <input oninput="verificarFoto()" id="imagem_input" type="url" placeholder="https://exemplo.com">
+            <div class="alerta_erro">
+              <div class="card_erro" id="cardErroImagem">
+                <span id="mensagem_erro_imagem"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div id="imagemUsuario" class="imagemUsuario">
+        </div>
+        </div>
         <div class="divIrParaLogin">
           <p>Já possui uma conta? <span><a href="./login.html">Fazer Login</a></span></p>
         </div>
         <div class="divButtonEntrar">
           <button onclick="cadastrar()">Cadastrar</button>
         </div>
-        <div id="div_aguardar" class="loading-div">
-          <img src="./assets/circle-loading.gif" id="loading-gif" />
-        </div>
       </div>
     </div>
   </div>
 
   <footer>
-    <div class="containerFooter">
+    <div class="containerFooterCadastro">
       <div class="primeiraParteFooter">
         <img src="./assets/logo.png" alt="Logo SeriesTv" width="70px" height="75x">
         <p class="descFooter">
@@ -176,17 +188,14 @@
     });
   }
 
-  function finalizarAguardar() {
-    div_aguardar.style.display = "none";
-  }
+  function verificarFoto(){
+    let imagemVar = imagem_input.value;
 
-  function limparFormulario() {
-    nome_input.value = "";
-    nome_de_usuario_input.value = "";
-    email_input.value = "";
-    telefone_input.value = "";
-    senha_input.value = "";
-    confirmacao_senha_input.value = "";
+    if(imagemVar == '' || !imagemVar.startsWith('https://')){
+      imagemUsuario.innerHTML = `<img src="https://cdn-icons-png.flaticon.com/512/9972/9972749.png" alt="Imagem do Usuário">`;
+    } else{
+      imagemUsuario.innerHTML = `<img src="${imagemVar}" alt="Imagem do Usuário">`;
+    }
   }
 
   function cadastrar() {
@@ -196,16 +205,31 @@
     var nomeDeUsuarioVar = nome_de_usuario_input.value;
     var emailVar = email_input.value;
     var telefoneVar = telefone_input.value;
+    var imagemVar = imagem_input.value;
     var senhaVar = senha_input.value;
     var confirmacaoSenhaVar = confirmacao_senha_input.value;
 
     var numeros = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
     var listaCaracteresEspeciais = [
-      '!', '"', '#', '$', '%', '&', "'", '(', ')', '*',
-      '+', ',', '-', '.', '/', ':', ';', '<', '=', '>',
-      '?', '@', '[', '\\', ']', '^', '_', '`', '{', '|',
-      '}', '~'
+      '!', '#', '$', '%', '&', '*',
+      '+', '-', '.', '/', ':', ';', '<', '=', '>',
+      '?', '@', '[', '\\', ']', '_', '{', '|',
+      '}'
     ];
+
+    // Validação imagem
+    var imagemInvalida = 0;
+    if(imagemVar == ''){
+      imagemInvalida++;
+      
+      if (imagemInvalida > 0) {
+        mostrarErro('mensagem_erro_imagem', 'cardErroImagem', 'Imagem Inválido1');
+      } else {
+        mostrarErro('mensagem_erro_imagem', 'cardErroImagem', 'Imagem Válido');
+      }
+    } else {
+      mostrarErro('mensagem_erro_imagem', 'cardErroImagem', 'Imagem Válido');
+    }
 
     var nomeInvalido = 0;
     if (nomeVar !== '' && !nomeVar[0].includes(' ')) {
@@ -299,7 +323,7 @@
       mostrarErro('mensagem_erro_confirmacao_senha', 'cardErroConfirmacaoSenha', 'Senhas Coincidem');
     }
 
-    if (nomeInvalido == 0 && nomeDeUsuarioInvalido == 0 && emailInvalido == 0 && telefoneCerto > 0 && senhaCerto > 0 && senhaVar === confirmacaoSenhaVar) {
+    if (nomeInvalido == 0 && nomeDeUsuarioInvalido == 0 && emailInvalido == 0 && telefoneCerto > 0 && senhaCerto > 0 && senhaVar === confirmacaoSenhaVar && imagemInvalida == 0) {
       fetch("/usuarios/cadastrar", {
         method: "POST",
         headers: {
@@ -311,6 +335,7 @@
           emailServer: emailVar,
           telefoneServer: telefoneVar,
           senhaServer: senhaVar,
+          imagemServer: imagemVar,
         }),
       })
         .then(function (resposta) {
@@ -321,7 +346,7 @@
 
             setTimeout(() => {
               window.location = "login.html";
-            }, "2000");
+            }, "500");
 
             limparFormulario();
             finalizarAguardar();
