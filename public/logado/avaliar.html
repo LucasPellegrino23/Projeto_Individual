@@ -20,36 +20,118 @@
             <h3 class="h3Ola">Olá, <span id="b_usuario"></span>!</h3>
 
             <div class="divLinks">
-                <button><a href="./perfil.html">Perfil do Usuário</a></button>
-                <button class="ative"><a href="./avaliar.html">Avaliar Séries</a></button>
-                <button><a href="./dashboard.html">Dashboard</a></button>
-                <button><a href="./avaliacoes.html">Avaliações</a></button>
+                <button><a class="links" href="./perfil.html">Perfil do Usuário</a></button>
+                <button class="ative"><a class="links" href="./avaliar.html">Avaliar Séries</a></button>
+                <button><a class="links" href="./dashboard.html">Dashboard</a></button>
+                <button><a class="links" href="./avaliacoes.html">Avaliações</a></button>
                 <h3 onclick="limparSessao()"><a href="../index.html">Sair</a></h3>
             </div>
         </div>
 
-        <div class="informacoesUsuario">
-            <div class="hello">
-                <div class="divImgUsuario">
-                    <h3>Foto de Perfil</h3>
-                    <div class="imagemUsuario" id="imgUsuario"></div>
+        <div class="formularioSerie">
+            <div class="cadastroSerie">
+                <div class="tituloSerie">
+                    <h1>Cadastre uma série</h1>
+                </div>
+                <div class="inputSerie1">
+                    <div class="inputBaseSerie">
+                        <span>Nome da Série</span>
+                        <input id="nome_serie_input" type="text" placeholder="Digite o nome da série">
+                        <div class="alerta_erro">
+                            <div class="card_erro" id="cardErroNomeSerie">
+                                <span id="mensagem_erro_nome_serie"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="inputBaseSerie">
+                        <span>Gênero</span>
+                        <input id="genero_input" type="text" placeholder="Digite o gênero da série">
+                        <div class="alerta_erro">
+                            <div class="card_erro" id="cardErroGenero">
+                                <span id="mensagem_erro_genero_serie"></span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="divInformacoes">
-                    <h3>Nome Completo:</h3>
-                    <span class="nomeUsuario" id="nomeUsuario"></span>
+                <div class="inputSerie2">
+                    <div class="inputBaseSerie">
+                        <span>Tipo da Série</span>
+                        <select id="select_tipo_serie">
+                            <option value="#" disabled selected>Selecione uma opção</option>
+                            <option value="assistido">Assistido</option>
+                            <option value="assistindo">Assistindo</option>
+                        </select>
+                        <div class="alerta_erro">
+                            <div class="card_erro" id="cardErroNomeSerie">
+                                <span id="mensagem_erro_nome_serie"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="inputBaseSerie">
+                        <span>Quantidade de Episódios</span>
+                        <input id="qtd_eps_input" type="text" placeholder="Digite a quantidade de episódios da série">
+                        <div class="alerta_erro">
+                            <div class="card_erro" id="cardErroQuantidade">
+                                <span id="mensagem_erro_qtd_serie"></span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="divInformacoes">
-                    <h3>Nome de Usuário</h3>
-                    <span class="nomeDeUsuario" id="nomeDeUsuario"></span>
+
+                <div class="inputSerie3">
+                    <div class="inputSinopseSerie">
+                        <span>Sinopse</span>
+                        <textarea id="sinopse_input" type="text" placeholder="Digite a sinopse da série"></textarea>
+                        <div class="alerta_erro">
+                            <div class="card_erro" id="cardErroNomeSinopse">
+                                <span id="mensagem_erro_sinopse_serie"></span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="divInformacoes">
-                    <h3>Email:</h3>
-                    <span class="mailUsuario" id="emailUsuario"></span>
+
+                <div class="inputSerie4">
+                    <div class="inputImagemSerie">
+                        <span>URL da Imagem da Série</span>
+                        <input oninput="verificarFoto()" id="imagem_serie_input" type="url"
+                            placeholder="https://exemplo.com">
+                        <div class="alerta_erro">
+                            <div class="card_erro" id="cardErroImagemSerie">
+                                <span id="mensagem_erro_imagem_serie"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div id="imagemSerie" class="imagemSerie">
+                        </div>
+                    </div>
                 </div>
-                <div class="divInformacoes">
-                    <h3>Telefone:</h3>
-                   <span class="telefoneUsuario" id="telUsuario"></span> 
+
+                <div class="inputSerie5">
+                    <div class="inputAvaliacaoSerie">
+                        <span>Avaliação</span>
+                        <textarea id="avaliacao_input" type="text" placeholder="Digite a avaliação da série"></textarea>
+                        <div class="alerta_erro">
+                            <div class="card_erro" id="cardErroNomeAvaliacao">
+                                <span id="mensagem_erro_avaliacao_serie"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="inputBaseSerie">
+                        <span>Nota da Série</span>
+                        <input id="nota_serie_input" type="number"
+                            placeholder="0.0">
+                        <div class="alerta_erro">
+                            <div class="card_erro" id="cardErroNotaSerie">
+                                <span id="mensagem_erro_nota_serie"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="buttonSerie">
+                    <button onclick="cadastrar()">Cadastrar Série</button>
                 </div>
             </div>
         </div>
@@ -59,25 +141,208 @@
 </html>
 
 <script>
+
+    // function mostrarErro(spanId, cardId, mensagem) {
+    //     document.getElementById(spanId).innerHTML = mensagem;
+    //     document.getElementById(cardId).style.display = 'block';
+    // }
+
+    // function limparErros() {
+    //     document.querySelectorAll('.card_erro').forEach(card => {
+    //         card.style.display = 'none';
+    //     });
+    //     document.querySelectorAll('.card_erro span').forEach(span => {
+    //         span.innerHTML = '';
+    //     });
+    // }
+
+    function verificarFoto() {
+        let imagemSerieVar = imagem_serie_input.value;
+
+        if (imagemSerieVar == '' || !imagemSerieVar.startsWith('https://')) {
+            imagemSerie.innerHTML = `<img src="https://cdn-icons-png.flaticon.com/512/9972/9972749.png" alt="Imagem do Usuário">`;
+        } else {
+            imagemSerie.innerHTML = `<img src="${imagemSerieVar}" alt="Imagem da Série">`;
+        }
+    }
+
     function validarSessao() {
-        var email = sessionStorage.EMAIL_USUARIO;
-        var imagem = sessionStorage.IMAGEM_USUARIO;
         var nome = sessionStorage.NOME_USUARIO;
-        var nomeDeUsuarioInput = sessionStorage.NOME_DE_USUARIO 
-        var telefone = sessionStorage.TELEFONE_USUARIO 
-        
-                     
+
+
         var b_usuario = document.getElementById("b_usuario");
 
-        if (email != null && nome != null && imagem != null) {
-            imgUsuario.innerHTML = `<img src="${imagem}" height="200px" width="200px">`;
+        if (nome != null) {
             b_usuario.innerHTML = nome;
-            nomeUsuario.innerHTML = nome;
-            nomeDeUsuario.innerHTML = nomeDeUsuarioInput;
-            emailUsuario.innerHTML = email;
-            telUsuario.innerHTML = telefone;
         } else {
             window.location = "../login.html";
         }
     }
+
+    // function cadastrar() {
+    //     limparErros();
+
+    //     var nomeVar = nome_input.value;
+    //     var nomeDeUsuarioVar = nome_de_usuario_input.value;
+    //     var emailVar = email_input.value;
+    //     var telefoneVar = telefone_input.value;
+    //     var imagemVar = imagem_input.value;
+    //     var senhaVar = senha_input.value;
+    //     var confirmacaoSenhaVar = confirmacao_senha_input.value;
+
+    //     var numeros = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
+    //     var listaCaracteresEspeciais = [
+    //         '!', '#', '$', '%', '&', '*',
+    //         '+', '-', '.', '/', ':', ';', '<', '=', '>',
+    //         '?', '@', '[', '\\', ']', '_', '{', '|',
+    //         '}'
+    //     ];
+
+    //     // Validação imagem
+    //     var imagemInvalida = 0;
+    //     if (imagemVar == '') {
+    //         imagemInvalida++;
+
+    //         if (imagemInvalida > 0) {
+    //             mostrarErro('mensagem_erro_imagem', 'cardErroImagem', 'Imagem Inválido1');
+    //         } else {
+    //             mostrarErro('mensagem_erro_imagem', 'cardErroImagem', 'Imagem Válido');
+    //         }
+    //     } else {
+    //         mostrarErro('mensagem_erro_imagem', 'cardErroImagem', 'Imagem Válido');
+    //     }
+
+    //     var nomeInvalido = 0;
+    //     if (nomeVar !== '' && !nomeVar[0].includes(' ')) {
+    //         for (let i = 0; i < nomeVar.length; i++) {
+    //             if (nomeVar[i] == numeros[i]) {
+    //                 nomeInvalido++;
+    //             }
+    //             if (nomeVar[i].toUpperCase() == nomeVar[i].toLowerCase()) {
+    //                 if (!nomeVar[i].includes(' ')) {
+    //                     nomeInvalido++;
+    //                 }
+    //             }
+    //         }
+    //         if (nomeInvalido > 0) {
+    //             mostrarErro('mensagem_erro_nome', 'cardErroNome', 'Nome Inválido');
+    //         } else {
+    //             mostrarErro('mensagem_erro_nome', 'cardErroNome', 'Nome Válido');
+    //         }
+    //     } else {
+    //         nomeInvalido++;
+    //         mostrarErro('mensagem_erro_nome', 'cardErroNome', 'Nome Inválido');
+    //     }
+
+    //     var nomeDeUsuarioInvalido = 0;
+    //     if (nomeDeUsuarioVar !== '' && !nomeDeUsuarioVar[0].includes(' ')) {
+    //         for (let i = 0; i < nomeDeUsuarioVar.length; i++) {
+    //             if (nomeDeUsuarioVar[i] == numeros[i]) {
+    //                 nomeDeUsuarioInvalido++;
+    //             }
+    //             if (nomeDeUsuarioVar[i].toUpperCase() == nomeDeUsuarioVar[i].toLowerCase()) {
+    //                 if (nomeDeUsuarioVar[i].includes(' ')) {
+    //                     nomeDeUsuarioInvalido++;
+    //                 }
+    //             }
+    //         }
+    //         if (nomeDeUsuarioInvalido > 0) {
+    //             mostrarErro('mensagem_erro_nome_de_usuario', 'cardErroNomeDeUsuario', 'Nome de Usuário Inválido');
+    //         } else {
+    //             mostrarErro('mensagem_erro_nome_de_usuario', 'cardErroNomeDeUsuario', 'Nome de Usuário Válido');
+    //         }
+    //     } else {
+    //         nomeDeUsuarioInvalido++;
+    //         mostrarErro('mensagem_erro_nome_de_usuario', 'cardErroNomeDeUsuario', 'Nome de Usuário Inválido');
+    //     }
+
+    //     var emailInvalido = 0;
+    //     if (emailVar.includes('@') && emailVar.includes('.') && !emailVar.includes(' ')) {
+    //         mostrarErro('mensagem_erro_email', 'cardErroEmail', 'Email Válido');
+    //     } else {
+    //         emailInvalido++;
+    //         mostrarErro('mensagem_erro_email', 'cardErroEmail', 'Email Inválido');
+    //     }
+
+    //     var telefoneCerto = 0;
+    //     if (telefoneVar != '' && telefoneVar.length == 11) {
+    //         for (let i = 0; i < telefoneVar.length; i++) {
+    //             for (let j = 0; j < numeros.length; j++) {
+    //                 if (telefoneVar[i] == numeros[j]) {
+    //                     telefoneCerto++;
+    //                 }
+    //             }
+    //         }
+    //         if (telefoneCerto > 0) {
+    //             mostrarErro('mensagem_erro_telefone', 'cardErroTelefone', 'Telefone Válido');
+    //         } else {
+    //             mostrarErro('mensagem_erro_telefone', 'cardErroTelefone', 'Telefone Inválido');
+    //         }
+    //     } else {
+    //         mostrarErro('mensagem_erro_telefone', 'cardErroTelefone', 'Telefone Inválido');
+    //     }
+
+    //     var senhaCerto = 0;
+    //     if (senhaVar != '' && !senhaVar.includes(' ') && senhaVar.length >= 8) {
+    //         for (let i = 0; i < listaCaracteresEspeciais.length; i++) {
+    //             if (senhaVar.includes(listaCaracteresEspeciais[i])) {
+    //                 senhaCerto++;
+    //             }
+    //         }
+    //         if (senhaCerto > 0) {
+    //             mostrarErro('mensagem_erro_senha', 'cardErroSenha', 'Senha Válida');
+    //         } else {
+    //             mostrarErro('mensagem_erro_senha', 'cardErroSenha', 'Senha Inválida');
+    //         }
+    //     } else {
+    //         mostrarErro('mensagem_erro_senha', 'cardErroSenha', 'Senha Inválida');
+    //     }
+
+    //     if (confirmacaoSenhaVar !== senhaVar || confirmacaoSenhaVar === '') {
+    //         mostrarErro('mensagem_erro_confirmacao_senha', 'cardErroConfirmacaoSenha', 'As senhas não coincidem');
+    //     } else {
+    //         mostrarErro('mensagem_erro_confirmacao_senha', 'cardErroConfirmacaoSenha', 'Senhas Coincidem');
+    //     }
+
+    //     if (nomeInvalido == 0 && nomeDeUsuarioInvalido == 0 && emailInvalido == 0 && telefoneCerto > 0 && senhaCerto > 0 && senhaVar === confirmacaoSenhaVar && imagemInvalida == 0) {
+    //         fetch("/usuarios/cadastrar", {
+    //             method: "POST",
+    //             headers: {
+    //                 "Content-Type": "application/json",
+    //             },
+    //             body: JSON.stringify({
+    //                 nomeServer: nomeVar,
+    //                 nomeDeUsuarioServer: nomeDeUsuarioVar,
+    //                 emailServer: emailVar,
+    //                 telefoneServer: telefoneVar,
+    //                 senhaServer: senhaVar,
+    //                 imagemServer: imagemVar,
+    //             }),
+    //         })
+    //             .then(function (resposta) {
+    //                 console.log("resposta: ", resposta);
+
+    //                 if (resposta.ok) {
+    //                     alert("Cadastro realizado com sucesso! Redirecionando para tela de Login...");
+
+    //                     setTimeout(() => {
+    //                         window.location = "login.html";
+    //                     }, "500");
+
+    //                     limparFormulario();
+    //                     finalizarAguardar();
+    //                 } else {
+    //                     throw "Houve um erro ao tentar realizar o cadastro!";
+    //                 }
+    //             })
+    //             .catch(function (resposta) {
+    //                 console.log(`#ERRO: ${resposta}`);
+    //                 finalizarAguardar();
+    //             });
+
+    //         return false;
+    //     }
+    // }
+
+
 </script>

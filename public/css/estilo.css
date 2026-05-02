@@ -403,6 +403,7 @@ body {
     height: 18em;
     width: 18em;
     object-fit: cover;
+    object-position: center;
     text-align: center;
     align-content: center;
 }
@@ -753,11 +754,11 @@ body {
     color: white;
     margin-top: 70px;
     width: 50%;
-    height: 350px;
+    height: 400px;
     padding: 20px;
     margin-bottom: 70px;
     position: relative;
-    margin-top: -33%;
+    margin-top: -36%;
     margin-bottom: 3%;
     backdrop-filter: blur(5px);
 }

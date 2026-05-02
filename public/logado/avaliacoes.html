@@ -20,36 +20,76 @@
             <h3 class="h3Ola">Olá, <span id="b_usuario"></span>!</h3>
 
             <div class="divLinks">
-                <button><a href="./perfil.html">Perfil do Usuário</a></button>
-                <button><a href="./avaliar.html">Avaliar Séries</a></button>
-                <button><a href="./dashboard.html">Dashboard</a></button>
-                <button class="ative"><a href="./avaliacoes.html">Avaliações</a></button>
+                <button><a class="links" href="./perfil.html">Perfil do Usuário</a></button>
+                <button><a class="links" href="./avaliar.html">Avaliar Séries</a></button>
+                <button><a class="links" href="./dashboard.html">Dashboard</a></button>
+                <button class="ative"><a class="links" href="./avaliacoes.html">Avaliações</a></button>
                 <h3 onclick="limparSessao()"><a href="../index.html">Sair</a></h3>
             </div>
         </div>
 
-        <div class="informacoesUsuario">
-            <div class="hello">
-                <div class="divImgUsuario">
-                    <h3>Foto de Perfil</h3>
-                    <div class="imagemUsuario" id="imgUsuario"></div>
+        <div class="containerCarrossel">
+            <h1 class="tituloCarrossel">Séries em Destaques</h1>
+            <div class="carousel">
+                <div class="cardsDoCarrossel">
+                    <img src="../assets/dexter.jpg" alt="Imagem carrossel" class="cardCarrossel">
+                    <p>Dexter</p>
+                    <p>nota</p>
                 </div>
-
-                <div class="divInformacoes">
-                    <h3>Nome Completo:</h3>
-                    <span class="nomeUsuario" id="nomeUsuario"></span>
+                <div class="cardsDoCarrossel">
+                    <img src="../assets/strangerThings.jpg" alt="Imagem carrossel" class="cardCarrossel">
+                    <p>Stranger Things</p>
+                    <p>nota</p>
                 </div>
-                <div class="divInformacoes">
-                    <h3>Nome de Usuário</h3>
-                    <span class="nomeDeUsuario" id="nomeDeUsuario"></span>
+                <div class="cardsDoCarrossel">
+                    <img src="../assets/greysAnatomy.jpg" alt="Imagem carrossel" class="cardCarrossel">
+                    <p>Grey's Anatomy</p>
+                    <p>nota</p>
                 </div>
-                <div class="divInformacoes">
-                    <h3>Email:</h3>
-                    <span class="mailUsuario" id="emailUsuario"></span>
+                <div class="cardsDoCarrossel">
+                    <img src="../assets/laCasaDePapel.jpg" alt="Imagem carrossel" class="cardCarrossel">
+                    <p>La Casa de Papel</p>
+                    <p>nota</p>
                 </div>
-                <div class="divInformacoes">
-                    <h3>Telefone:</h3>
-                   <span class="telefoneUsuario" id="telUsuario"></span> 
+                <div class="cardsDoCarrossel">
+                    <img src="../assets/theBoys.png" alt="Imagem carrossel" class="cardCarrossel">
+                    <p>The Boys</p>
+                    <p>nota</p>
+                </div>
+                <div class="cardsDoCarrossel">
+                    <img src="../assets/theLastOfUs.jpg" alt="Imagem carrossel" class="cardCarrossel">
+                    <p>The Last of Us</p>
+                    <p>nota</p>
+                </div>
+                <div class="cardsDoCarrossel">
+                    <img src="../assets/dexter.jpg" alt="Imagem carrossel" class="cardCarrossel">
+                    <p>Dexter</p>
+                    <p>nota</p>
+                </div>
+                <div class="cardsDoCarrossel">
+                    <img src="../assets/strangerThings.jpg" alt="Imagem carrossel" class="cardCarrossel">
+                    <p>Stranger Things</p>
+                    <p>nota</p>
+                </div>
+                <div class="cardsDoCarrossel">
+                    <img src="../assets/greysAnatomy.jpg" alt="Imagem carrossel" class="cardCarrossel">
+                    <p>Grey's Anatomy</p>
+                    <p>nota</p>
+                </div>
+                <div class="cardsDoCarrossel">
+                    <img src="../assets/laCasaDePapel.jpg" alt="Imagem carrossel" class="cardCarrossel">
+                    <p>La Casa de Papel</p>
+                    <p>nota</p>
+                </div>
+                <div class="cardsDoCarrossel">
+                    <img src="../assets/theBoys.png" alt="Imagem carrossel" class="cardCarrossel">
+                    <p>The Boys</p>
+                    <p>nota</p>
+                </div>
+                <div class="cardsDoCarrossel">
+                    <img src="../assets/theLastOfUs.jpg" alt="Imagem carrossel" class="cardCarrossel">
+                    <p>The Last of Us</p>
+                    <p>nota</p>
                 </div>
             </div>
         </div>
@@ -61,21 +101,12 @@
 <script>
     function validarSessao() {
         var email = sessionStorage.EMAIL_USUARIO;
-        var imagem = sessionStorage.IMAGEM_USUARIO;
         var nome = sessionStorage.NOME_USUARIO;
-        var nomeDeUsuarioInput = sessionStorage.NOME_DE_USUARIO 
-        var telefone = sessionStorage.TELEFONE_USUARIO 
-        
-                     
+
         var b_usuario = document.getElementById("b_usuario");
 
-        if (email != null && nome != null && imagem != null) {
-            imgUsuario.innerHTML = `<img src="${imagem}" height="200px" width="200px">`;
+        if (email != null && nome != null) {
             b_usuario.innerHTML = nome;
-            nomeUsuario.innerHTML = nome;
-            nomeDeUsuario.innerHTML = nomeDeUsuarioInput;
-            emailUsuario.innerHTML = email;
-            telUsuario.innerHTML = telefone;
         } else {
             window.location = "../login.html";
         }

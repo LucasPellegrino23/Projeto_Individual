@@ -4,22 +4,22 @@
 
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100..700;1,100..700&display=swap');
 
-*{
+* {
     margin: 0;
     padding: 0;
 }
 
-body{
+body {
     background-color: #e5e7eb;
 }
 
 /* Navegação */
-.containerPagina{
+.containerPagina {
     display: flex;
     width: 100%;
 }
 
-.navegacao{
+.navegacao {
     height: 729px;
     width: 20%;
     display: flex;
@@ -27,23 +27,24 @@ body{
     justify-content: space-around;
     background-color: black;
     text-align: center;
+    position: fixed;
 }
 
-.divLogo{
+.divLogo {
     display: flex;
     justify-content: center;
 }
 
-.divLogo img{
+.divLogo img {
     width: 150px;
 }
 
-.h3Ola{
+.h3Ola {
     color: white;
     font-family: "IBM Plex Sans";
 }
 
-.divLinks{
+.divLinks {
     height: 35%;
     display: flex;
     flex-direction: column;
@@ -51,7 +52,7 @@ body{
     justify-content: space-around;
 }
 
-.divLinks button{
+.divLinks button {
     width: 200px;
     height: 40px;
     background-color: #037eeb;
@@ -62,12 +63,17 @@ body{
     transition: all 1s;
 }
 
-.divLinks a{
+.links{
+    width: 100%;
+    height: 100%;
+}
+
+.divLinks a {
     text-decoration: none;
     font-family: "IBM Plex Sans";
     font-weight: 900;
     color: white;
-    font-size: 15px;
+    font-size: 15px;    
 }
 
 .divLinks h3 a{
@@ -79,32 +85,33 @@ body{
     transition: all 1s;
 }
 
-.divLinks h3 a:hover{
+.divLinks h3 a:hover {
     color: #037eeb;
 }
 
-.divLinks .ative{
+.divLinks .ative {
     text-decoration: none;
     background-color: #0d2c82;
 }
 
-.divLinks button:hover{
+.divLinks button:hover {
     transform: scale(1.1);
     background-color: #0d2c82;
-    
+
 }
 
 /* Fim Navegação */
 
 /* Informações do Usuário */
-.informacoesUsuario{
+.informacoesUsuario {
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 80%;
+    margin-left: 300px;
 }
 
-.hello{
+.hello {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -112,7 +119,7 @@ body{
     width: 80%;
 }
 
-.divImgUsuario{
+.divImgUsuario {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -120,13 +127,13 @@ body{
     height: 250px;
 }
 
-.divImgUsuario h3{
+.divImgUsuario h3 {
     font-family: "IBM Plex Sans";
     color: #0d2c82;
     font-size: 25px;
 }
 
-.imagemUsuario{
+.imagemUsuario {
     height: 210px;
     width: 210px;
     border-radius: 50%;
@@ -136,11 +143,16 @@ body{
     align-items: center;
 }
 
-.imagemUsuario img{
+.imagemUsuario img {
+    height: 200px;
+    width: 200px;
     border-radius: 50%;
+    object-fit: cover;
+    object-position: center;
+    align-content: center;
 }
 
-.divInformacoes{
+.divInformacoes {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -148,7 +160,7 @@ body{
     width: 100%;
 }
 
-.divInformacoes h3{
+.divInformacoes h3 {
     font-family: "IBM Plex Sans";
     margin-left: 20px;
     color: #0d2c82;
@@ -167,7 +179,323 @@ body{
     border-radius: 10px;
 }
 
-.telefoneUsuario{
+.telefoneUsuario {
     margin-bottom: 15px;
 }
+
 /* Fim Informações de Usuário */
+
+/* Avaliar Série */
+.formularioSerie {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80%;
+    margin-left: 300px;
+}
+
+.cadastroSerie {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-around;
+    height: 100%;
+    width: 80%;
+    margin-top: 50px;
+    background-color: white;
+    padding: 30px;
+    margin-bottom: 50px;
+}
+.tituloSerie  h1{
+    font-weight: 500;
+    border-bottom: 5px solid #037eeb;
+}
+
+.inputSerie1{
+    margin-top: 50px;
+}
+
+.inputSerie1,
+.inputSerie2,
+.inputSerie3,
+.inputSerie5 {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.inputSerie4 {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    width: 100%;
+}
+
+.inputBaseSerie {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 45%;
+}
+
+.inputBaseSerie input {
+    height: 40px;
+    border-radius: 5px;
+    border: 2px solid #0d2c82;
+    padding-left: 10px;
+    color: gray;
+    box-shadow: 5px 5px 10px gray;
+}
+
+.inputBaseSerie span {
+    font-size: 20px;
+    color: #0d2c82;
+}
+
+.inputImagemSerie {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+}
+
+.inputImagemSerie input {
+    height: 40px;
+    border-radius: 5px;
+    border: 2px solid #0d2c82;
+    padding-left: 10px;
+    color: gray;
+    box-shadow: 5px 5px 10px gray;
+}
+
+.inputImagemSerie span {
+    font-size: 20px;
+    color: #0d2c82;
+}
+
+.inputBaseSerie select {
+    height: 40px;
+    border-radius: 5px;
+    border: 2px solid #0d2c82;
+    padding-left: 5px;
+    color: gray;
+    box-shadow: 5px 5px 10px gray;
+}
+
+.inputSinopseSerie {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+}
+
+.inputSinopseSerie textarea {
+    align-items: flex-start;
+    height: 120px;
+    border-radius: 5px;
+    border: 2px solid #0d2c82;
+    vertical-align: top;
+    padding-top: 10px;
+    padding-left: 10px;
+    color: gray;
+    box-shadow: 5px 5px 10px gray;
+}
+
+.inputSinopseSerie textarea::placeholder {
+    vertical-align: top;
+    text-align: left;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.inputSinopseSerie span {
+    font-size: 20px;
+    color: #0d2c82;
+}
+
+.imagemSerie {
+    height: 18em;
+    width: 18em;
+    border-radius: .4em;
+    padding: 15px;
+    background-color: black;
+    border: 2px solid #0d2c82;
+    align-items: center;
+    margin-bottom: 50px;
+    box-shadow: 8px 8px 10px gray;
+}
+
+.imagemSerie img {
+    flex: 0 0 12em;
+    height: 18em;
+    width: 18em;
+    object-fit: cover;
+    object-position: center;
+    text-align: center;
+    align-content: center;
+}
+
+.buttonSerie{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.buttonSerie button{
+    background-color: #037eeb;
+    padding: 15px;
+    width: 200px;
+    font-size: 16px;
+    font-weight: bold;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    transition: all 1s;
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+.buttonSerie button:hover{
+    transform: scale(1.1);
+    background-color: #0d2c82;
+}
+
+.inputAvaliacaoSerie {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 50%;
+}
+
+.inputAvaliacaoSerie textarea {
+    align-items: flex-start;
+    height: 140px;
+    border-radius: 5px;
+    border: 2px solid #0d2c82;
+    vertical-align: top;
+    padding-top: 10px;
+    padding-left: 10px;
+    color: gray;
+    box-shadow: 5px 5px 10px gray;
+}
+
+.inputAvaliacaoSerie textarea::placeholder {
+    vertical-align: top;
+    text-align: left;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.inputAvaliacaoSerie span {
+    font-size: 20px;
+    color: #0d2c82;
+}
+/* Fim Avaliar Série */
+
+/* Carrosel */
+.containerCarrossel {
+    margin-top: 100px;
+    margin-left: 300px;
+    width: 80%;
+}
+
+.carousel {
+    width: 85%;
+    overflow-x: auto;
+    margin: 100px;
+    display: flex;
+    align-items: center;
+    gap: 1em;
+    scroll-behavior: smooth;
+    anchor-name: --carousel;
+    scroll-snap-type: x mandatory;
+    scroll-marker-group: after;
+}
+
+.carousel::scroll-marker-group {
+    display: flex;
+    justify-content: center;
+    gap: .5em;
+}
+
+.cardCarrossel::scroll-marker {
+    content: '';
+    height: 1em;
+    width: 1em;
+    background-color: rgb(190, 190, 190);
+    border-radius: 50%;
+}
+
+.cardCarrossel::scroll-marker:target-current {
+    background-color: #0d2c82;
+}
+
+.carousel::-webkit-scrollbar {
+    display: none;
+}
+
+.carousel::scroll-button(right) {
+    content: '→';
+    border: none;
+    background-color: #0d2c82;
+    font-size: 3rem;
+    font-family: Consolas;
+    color: #fff;
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+    padding-bottom: .1em;
+    cursor: pointer;
+    position: fixed;
+    position-anchor: --carousel;
+    position-area: right center;
+    translate: -50%;
+}
+
+.carousel::scroll-button(left) {
+    content: '←';
+    border: none;
+    background-color: #0d2c82;
+    font-size: 3rem;
+    font-family: Consolas;
+    color: #fff;
+    height: 60px;
+    width: 60px;
+    border-radius: 50%;
+    padding-bottom: .1em;
+    cursor: pointer;
+    position: fixed;
+    position-anchor: --carousel;
+    position-area: left center;
+    translate: 50%;
+}
+
+.carousel::scroll-button(right):disabled,
+.carousel::scroll-button(left):disabled {
+    opacity: 0.5;
+    cursor: auto;
+}
+
+.cardCarrossel {
+    height: 10em;
+    width: 10em;
+    object-fit: cover;
+    object-position: center;
+    text-align: center;
+    align-content: center;
+}
+
+.cardsDoCarrossel {
+    scroll-snap-align: start;
+    color: #fff;
+    background-color: black;
+    border-radius: .4em;
+    padding: 15px;
+}
+
+.tituloCarrossel {
+    color: #0d2c82;
+    margin-left: 100px;
+    font-size: 40px;
+}
+
+/* Fim Carrosel */
