@@ -10,7 +10,7 @@
 }
 
 body {
-    background-color: #e5e7eb;
+    background-color: #000000;
 }
 
 /* Navegação */
@@ -25,7 +25,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    background-color: black;
+    background-color: #181818;
     text-align: center;
     position: fixed;
 }
@@ -56,8 +56,8 @@ body {
     width: 200px;
     height: 40px;
     background-color: #037eeb;
-    border: 1px solid white;
-    border-radius: 15px;
+    border: 1px solid black;
+    border-radius: 5px;
     box-shadow: 5px 5px 10px #0d2c82;
     cursor: pointer;
     transition: all 1s;
@@ -125,11 +125,12 @@ body {
     justify-content: space-between;
     align-items: center;
     height: 250px;
+    margin-top: 25px;
 }
 
 .divImgUsuario h3 {
     font-family: "IBM Plex Sans";
-    color: #0d2c82;
+    color: #fff;
     font-size: 25px;
 }
 
@@ -163,7 +164,7 @@ body {
 .divInformacoes h3 {
     font-family: "IBM Plex Sans";
     margin-left: 20px;
-    color: #0d2c82;
+    color: #fff;
     font: 25px;
 }
 
@@ -172,6 +173,7 @@ body {
 .mailUsuario,
 .telefoneUsuario {
     background-color: #a9a9a9;
+    color: #0d2c82;
     width: 98%;
     padding: 10px;
     font-size: 20px;
@@ -209,6 +211,13 @@ body {
 .tituloSerie  h1{
     font-weight: 500;
     border-bottom: 5px solid #037eeb;
+}
+
+.tituloSerie2  h1{
+    font-weight: 500;
+    border-bottom: 5px solid #037eeb;
+    margin-top: 15px;
+    margin-bottom: 50px;
 }
 
 .inputSerie1{

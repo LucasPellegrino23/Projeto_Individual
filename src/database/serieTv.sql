@@ -15,9 +15,9 @@ CREATE TABLE usuario(
 CREATE TABLE serie(
 	id_serie INT PRIMARY KEY AUTO_INCREMENT,
     nome_serie VARCHAR(60) UNIQUE,
-    tipo_serie VARCHAR(20),
-    CONSTRAINT cons_tipo_serie CHECK(tipo_serie IN('assistido', 'assistindo')),
-    sinopse VARCHAR(300),
+    status_serie VARCHAR(20),
+    CONSTRAINT cons_status_serie CHECK(status_serie IN('assistido', 'assistindo')),
+    sinopse VARCHAR(700),
     genero VARCHAR(50),
     qtd_episodios INT,
     imagem VARCHAR(500),
@@ -35,3 +35,5 @@ CREATE TABLE avaliacao(
 );
 
 SELECT * FROM usuario;
+SELECT * FROM serie;
+SELECT * FROM avaliacao;
