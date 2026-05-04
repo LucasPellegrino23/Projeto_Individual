@@ -83,6 +83,7 @@ function cadastrarSerie(req, res) {
     var avaliacao = req.body.avaliacaoServer;
     var nota = req.body.notaServer;
     var imagemSerie = req.body.imagemCapaSerieServer;
+    var idUsuario = req.body.idUsuarioServer;
 
     // Faça as validações dos valores
     if (nomeSerie == undefined) {
@@ -101,10 +102,12 @@ function cadastrarSerie(req, res) {
         res.status(400).send("A nota da série está undefined!");
     } else if (imagemSerie == undefined) {
         res.status(400).send("A imagem da série está undefined!");
+    } else if (idUsuario == undefined) {
+        res.status(400).send("O id do usuário está undefined!");
     } else {
 
         // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
-        usuarioModel.cadastrarSerie(nomeSerie, statusSerie, sinopse, genero, qtdEpisodio, imagemSerie, avaliacao, nota)
+        usuarioModel.cadastrarSerie(nomeSerie, statusSerie, sinopse, genero, qtdEpisodio, imagemSerie, avaliacao, nota, idUsuario)
             .then(
                 function (resultado) {
                     res.json(resultado);

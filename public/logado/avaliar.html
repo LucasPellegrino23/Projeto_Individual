@@ -183,6 +183,7 @@
     }
 
     function cadastrar() {
+
         limparErros();
 
         var nomeSerieVar = nome_serie_input.value;
@@ -193,6 +194,7 @@
         var imagemCapaSerieVar = imagem_serie_input.value;
         var avaliacaoVar = avaliacao_input.value;
         var notaVar = nota_serie_input.value;
+        var idUsuarioVar = sessionStorage.ID_USUARIO
 
         var numeros = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
 
@@ -273,18 +275,17 @@
                     avaliacaoServer: avaliacaoVar,
                     notaServer: notaVar,
                     imagemCapaSerieServer: imagemCapaSerieVar,
+                    idUsuarioServer: idUsuarioVar,
                 }),
             })
                 .then(function (resposta) {
-                    console.log("resposta: ", resposta);
+                    console.log("resposta status: ", resposta.status);
 
                     if (resposta.ok) {
                         alert("Cadastro de Série realizado com sucesso! Redirecionando para tela da Dashboard...");
-
                         setTimeout(() => {
                             window.location = "dashboard.html";
                         }, "500");
-
                         limparFormulario();
                     } else {
                         throw "Houve um erro ao tentar realizar o cadastro de série!";
