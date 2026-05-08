@@ -100,7 +100,7 @@
         </div>
         <div class="divInput4">
           <div class="inputBase">
-            <span>Link do seu Avatar</span>
+            <span>Link de endereço da sua Imagem</span>
             <input oninput="verificarFoto()" id="imagem_input" type="url" placeholder="https://exemplo.com">
             <div class="alerta_erro">
               <div class="card_erro" id="cardErroImagem">
@@ -192,7 +192,7 @@
     let imagemVar = imagem_input.value;
 
     if(imagemVar == '' || !imagemVar.startsWith('https://')){
-      imagemUsuario.innerHTML = `<img src="https://cdn-icons-png.flaticon.com/512/9972/9972749.png" alt="Imagem do Usuário">`;
+      imagemUsuario.innerHTML = `<img src="https://cdn-icons-png.flaticon.com/512/9972/9972749.png" alt="Imagem de Erro">`;
     } else{
       imagemUsuario.innerHTML = `<img src="${imagemVar}" alt="Imagem do Usuário">`;
     }
@@ -318,9 +318,9 @@
     }
 
     if (confirmacaoSenhaVar !== senhaVar || confirmacaoSenhaVar === '') {
-      mostrarErro('mensagem_erro_confirmacao_senha', 'cardErroConfirmacaoSenha', 'As senhas não coincidem');
+      mostrarErro('mensagem_erro_confirmacao_senha', 'cardErroConfirmacaoSenha', 'As senhas não são iguais');
     } else {
-      mostrarErro('mensagem_erro_confirmacao_senha', 'cardErroConfirmacaoSenha', 'Senhas Coincidem');
+      mostrarErro('mensagem_erro_confirmacao_senha', 'cardErroConfirmacaoSenha', 'Senhas Iguais');
     }
 
     if (nomeInvalido == 0 && nomeDeUsuarioInvalido == 0 && emailInvalido == 0 && telefoneCerto > 0 && senhaCerto > 0 && senhaVar === confirmacaoSenhaVar && imagemInvalida == 0) {

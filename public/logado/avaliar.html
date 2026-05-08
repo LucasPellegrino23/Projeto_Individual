@@ -93,7 +93,7 @@
 
                 <div class="inputSerie4">
                     <div class="inputImagemSerie">
-                        <span>Link da Imagem da Série</span>
+                        <span>Link de endereço da Imagem da Série</span>
                         <input oninput="verificarFoto()" id="imagem_serie_input" type="url"
                             placeholder="https://exemplo.com">
                         <div class="alerta_erro">
@@ -261,7 +261,7 @@
         // }
 
         if (nomeSerieVar !== '' && generoVar !== '' && statusSerieVar !== '' && qtdEpisodiosVar !== '' && sinopseVar !== '' && imagemCapaSerieVar !== '' && avaliacaoVar !== '' && notaVar !== '') {
-            fetch("/usuarios/cadastrarSerie", {
+            fetch("/series/cadastrarSerie", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

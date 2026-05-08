@@ -31,9 +31,14 @@ CREATE TABLE avaliacao(
     desc_avaliacao VARCHAR(300),
     nota_serie DECIMAL(3,1),
     fk_serie INT,
-    CONSTRAINT cons_fk_serie FOREIGN KEY (fk_serie) REFERENCES serie(id_serie)
+    CONSTRAINT cons_fk_serie FOREIGN KEY (fk_serie) REFERENCES serie(id_serie),
+    fk_usuario_2 INT,
+    CONSTRAINT cons_fk_usuario_2 FOREIGN KEY (fk_usuario_2) REFERENCES usuario(id_usuario)
 );
 
 SELECT * FROM usuario;
 SELECT * FROM serie;
 SELECT * FROM avaliacao;
+
+DROP TABLE avaliacao;
+truncate serie;
