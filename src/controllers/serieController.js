@@ -52,6 +52,12 @@ function cadastrarSerie(req, res) {
     }
 }
 
+function listarSerie(req, res){
+    serieModel.listarSerie().then((resultado) =>{
+        res.status(200).json(resultado);
+    })
+}
+
 module.exports = {
-    cadastrarSerie
+    cadastrarSerie, listarSerie
 }

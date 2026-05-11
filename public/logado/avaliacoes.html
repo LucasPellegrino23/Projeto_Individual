@@ -111,4 +111,24 @@
             window.location = "../login.html";
         }
     }
+
+    window.onload = exibirSeries();
+
+    function exibirSeries(){
+        fetch(`/series/listarSerie`).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (resposta) {
+                    console.log(`Séries recebidas: ${JSON.stringify(resposta)}`);
+                    for(let i = 0; i < resposta.length; i++){
+                        
+                    }
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados: ${error.message}`);
+            });
+    }
 </script>

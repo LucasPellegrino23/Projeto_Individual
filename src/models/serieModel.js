@@ -21,6 +21,18 @@ function cadastrarSerie(nomeSerie, statusSerie, sinopse, genero, qtdEpisodio, im
         });
 }
 
+function listarSerie() {
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrarSerie():",);
+    
+    // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
+    //  e na ordem de inserção dos dados.
+    var instrucaoSql1 = `
+        SELECT nome_serie_avaliacao, desc_avaliacao, nota_serie FROM avaliacao;
+    `;
+
+    return database.executar(instrucaoSql1);
+}
+
 module.exports = {
-    cadastrarSerie
+    cadastrarSerie, listarSerie
 };

@@ -226,9 +226,15 @@ body {
 
 .inputSerie1,
 .inputSerie2,
-.inputSerie3,
+.inputSerie3 {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
 .inputSerie5 {
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
     width: 100%;
 }
@@ -290,6 +296,27 @@ body {
     padding-left: 5px;
     color: gray;
     box-shadow: 5px 5px 10px gray;
+}
+
+.inputBaseSerieNota input{
+    height: 40px;
+    border-radius: 5px;
+    border: 2px solid #0d2c82;
+    padding-left: 10px;
+    color: gray;
+    box-shadow: 5px 5px 10px gray;
+}
+
+.inputBaseSerieNota span {
+    font-size: 20px;
+    color: #0d2c82;
+}
+
+.inputBaseSerieNota {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
 }
 
 .inputSinopseSerie {
@@ -373,7 +400,7 @@ body {
     display: flex;
     flex-direction: column;
     gap: 20px;
-    width: 50%;
+    width: 100%;
 }
 
 .inputAvaliacaoSerie textarea {

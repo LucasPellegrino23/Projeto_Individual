@@ -7,4 +7,8 @@ router.post("/cadastrarSerie", function (req, res) {
     serieController.cadastrarSerie(req, res);
 })
 
+router.get("/listarSerie", function(req, res){
+    serieController.listarSerie(req, res);
+})
+
 module.exports = router;
