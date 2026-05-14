@@ -158,7 +158,6 @@
         </div>
         <div class="linkagemFooter">
           <ul>
-            <li><a href="avaliar.html">Avaliar</a></li>
             <li><a href="sobreMim.html">Sobre Mim</a></li>
           </ul>
         </div>
@@ -349,14 +348,12 @@
             }, "500");
 
             limparFormulario();
-            finalizarAguardar();
           } else {
             throw "Houve um erro ao tentar realizar o cadastro!";
           }
         })
         .catch(function (resposta) {
           console.log(`#ERRO: ${resposta}`);
-          finalizarAguardar();
         });
 
       return false;

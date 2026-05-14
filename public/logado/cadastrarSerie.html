@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SeriesTV | Avaliar Séries</title>
+
+    <link rel="stylesheet" href="../css/styleLogador.css">
+    <script src="../js/sessao.js"></script>
+    <script src="../js/alerta.js"></script>
+</head>
+
+<body onload="validarSessao()">
+    <div class="containerPagina">
+        <div class="navegacao">
+            <div class="divLogo">
+                <img src="../assets/logo.png" alt="Logo SeriesTv">
+            </div>
+            <h3 class="h3Ola">Olá, <span id="b_usuario"></span>!</h3>
+
+            <div class="divLinks">
+                <button><a class="links" href="./perfil.html">Perfil do Usuário</a></button>
+                <button class="ative"><a class="links" href="./avaliar.html">Avaliar Séries</a></button>
+                <button><a class="links" href="./dashboard.html">Dashboard</a></button>
+                <button><a class="links" href="./avaliacoes.html">Avaliações</a></button>
+                <h3 onclick="limparSessao()"><a href="../index.html">Sair</a></h3>
+            </div>
+        </div>
+
+        <div class="formularioSerie">
+            <div class="cadastroSerie">
+                <div class="tituloSerie">
+                    <h1>Cadastre uma série</h1>
+                </div>
+                <div class="inputSerie1">
+                    <div class="inputBaseSerie">
+                        <span>Nome da Série</span>
+                        <input id="nome_serie_input" type="text" placeholder="Digite o nome da série">
+                        <div class="alerta_erro">
+                            <div class="card_erro" id="cardErroNomeSerie">
+                                <span id="mensagem_erro_nome_serie"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="inputBaseSerie">
+                        <span>Gênero</span>
+                        <input id="genero_input" type="text" placeholder="Digite o gênero da série">
+                        <div class="alerta_erro">
+                            <div class="card_erro" id="cardErroGenero">
+                                <span id="mensagem_erro_genero_serie"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="inputSerie2">
+                    <div class="inputBaseSerie">
+                        <span>Status da Série</span>
+                        <select id="select_status_serie">
+                            <option value="#" disabled selected>Selecione uma opção</option>
+                            <option value="assistido">Assistido</option>
+                            <option value="assistindo">Assistindo</option>
+                        </select>
+                        <div class="alerta_erro">
+                            <div class="card_erro" id="cardErroNomeSerie">
+                                <span id="mensagem_erro_nome_serie"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="inputBaseSerie">
+                        <span>Quantidade de Episódios</span>
+                        <input id="qtd_eps_input" type="number" placeholder="Digite a quantidade de episódios da série">
+                        <div class="alerta_erro">
+                            <div class="card_erro" id="cardErroQuantidade">
+                                <span id="mensagem_erro_qtd_serie"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="inputSerie3">
+                    <div class="inputSinopseSerie">
+                        <span>Sinopse</span>
+                        <textarea id="sinopse_input" type="text" placeholder="Digite a sinopse da série"></textarea>
+                        <div class="alerta_erro">
+                            <div class="card_erro" id="cardErroNomeSinopse">
+                                <span id="mensagem_erro_sinopse_serie"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="inputSerie4">
+                    <div class="inputImagemSerie">
+                        <span>Link de endereço da Imagem da Série</span>
+                        <input oninput="verificarFoto()" id="imagem_serie_input" type="url"
+                            placeholder="https://exemplo.com">
+                        <div class="alerta_erro">
+                            <div class="card_erro" id="cardErroImagemSerie">
+                                <span id="mensagem_erro_imagem_serie"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div id="imagemSerie" class="imagemSerie">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="buttonSerie">
+                    <button onclick="cadastrar()">Cadastrar Série</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+
+<script>
+
+    function verificarFoto() {
+        let imagemSerieVar = imagem_serie_input.value;
+
+        if (imagemSerieVar == '' || !imagemSerieVar.startsWith('https://')) {
+            imagemSerie.innerHTML = `<img src="https://cdn-icons-png.flaticon.com/512/9972/9972749.png" alt="Imagem do Usuário">`;
+        } else {
+            imagemSerie.innerHTML = `<img src="${imagemSerieVar}" alt="Imagem da Série">`;
+        }
+    }
+
+    function validarSessao() {
+        var nome = sessionStorage.NOME_USUARIO;
+        b_usuario.innerHTML = nome;
+    }
+
+    function cadastrar() {
+
+        var nomeSerieVar = nome_serie_input.value;
+        var generoVar = genero_input.value;
+        var statusSerieVar = select_status_serie.value;
+        var qtdEpisodiosVar = qtd_eps_input.value;
+        var sinopseVar = sinopse_input.value;
+        var imagemCapaSerieVar = imagem_serie_input.value;
+        var idUsuarioVar = sessionStorage.ID_USUARIO
+
+        var numeros = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
+
+
+        if (nomeSerieVar !== '' && generoVar !== '' && statusSerieVar !== '' && qtdEpisodiosVar !== '' && sinopseVar !== '' && imagemCapaSerieVar !== '') {
+            fetch("/series/cadastrarSerie", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    nomeSerieServer: nomeSerieVar,
+                    generoServer: generoVar,
+                    statusSerieServer: statusSerieVar,
+                    qtdEpisodiosServer: qtdEpisodiosVar,
+                    sinopseServer: sinopseVar,
+                    imagemCapaSerieServer: imagemCapaSerieVar,
+                    idUsuarioServer: idUsuarioVar,
+                }),
+            })
+                .then(function (resposta) {
+                    console.log("resposta status: ", resposta.status);
+
+                    if (resposta.ok) {
+                        resposta.json().then(json => {
+                            sessionStorage.ID_SERIE = json.id_serie;
+                            sessionStorage.NOME_SERIE = nomeSerieVar;
+
+                            alert("Cadastro de Série realizado com sucesso! Redirecionando para a Avaliação...");
+                            setTimeout(() => {
+                                window.location = "avaliar.html";
+                            }, "500");
+                        })
+                    } else {
+                        throw "Houve um erro ao tentar realizar o cadastro de série!";
+                    }
+                })
+                .catch(function (resposta) {
+                    console.log(`#ERRO: ${resposta}`);
+                });
+
+            return false;
+        }
+    }
+
+</script>

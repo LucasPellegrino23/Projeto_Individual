@@ -103,7 +103,6 @@
                 </div>
                 <div class="linkagemFooter">
                     <ul>
-                        <li><a href="avaliar.html">Avaliar</a></li>
                         <li><a href="sobreMim.html">Sobre Mim</a></li>
                     </ul>
                 </div>
@@ -118,22 +117,7 @@
 </html>
 
 <script>
-
-    function mostrarErro(mensagem) {
-        alert(mensagem)
-    }
-
-    function limparErros() {
-        document.querySelectorAll('.card_erro_login').forEach(card => {
-            card.style.display = 'none';
-        });
-        document.querySelectorAll('.card_erro_login span').forEach(span => {
-            span.innerHTML = '';
-        });
-    }
-
     function entrar() {
-        limparErros();
 
         var nomeDeUsuarioVar = nome_de_usuario_input.value;
         var senhaVar = senha_input.value;
@@ -181,11 +165,6 @@
 
             } else {
                 console.log("Houve um erro ao tentar realizar o login!");
-
-                resposta.text().then(texto => {
-                    console.error(texto);
-                    mostrarErro("Houve um erro ao tentar realizar o login!");
-                });
             }
 
         }).catch(function (erro) {

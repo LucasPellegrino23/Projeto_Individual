@@ -24,7 +24,7 @@
 
             <div class="divLinks">
                 <button><a class="links" href="./perfil.html">Perfil do Usuário</a></button>
-                <button><a class="links" href="./avaliar.html">Avaliar Séries</a></button>
+                <button><a class="links" href="./cadastrarSerie.html">Avaliar Séries</a></button>
                 <button class="ative"><a class="links" href="./dashboard.html">Dashboard</a></button>
                 <button><a class="links" href="./avaliacoes.html">Avaliações</a></button>
                 <h3 onclick="limparSessao()"><a href="../index.html">Sair</a></h3>
@@ -68,15 +68,7 @@
 
     function validarSessao() {
         var nome = sessionStorage.NOME_USUARIO;
-
-
-        var b_usuario = document.getElementById("b_usuario");
-
-        if (nome != null) {
             b_usuario.innerHTML = nome;
-        } else {
-            window.location = "../login.html";
-        }
     }
 
 

@@ -21,7 +21,7 @@
 
             <div class="divLinks">
                 <button class="ative"><a class="links" href="#">Perfil do Usuário</a></button>
-                <button><a class="links" href="./avaliar.html">Avaliar Séries</a></button>
+                <button><a class="links" href="./cadastrarSerie.html">Avaliar Séries</a></button>
                 <button><a class="links" href="./dashboard.html">Dashboard</a></button>
                 <button><a class="links" href="./avaliacoes.html">Avaliações</a></button>
                 <h3 onclick="limparSessao()"><a href="../index.html">Sair</a></h3>
@@ -63,10 +63,8 @@
         var email = sessionStorage.EMAIL_USUARIO;
         var imagem = sessionStorage.IMAGEM_USUARIO;
         var nome = sessionStorage.NOME_USUARIO;
-        var nomeDeUsuarioInput = sessionStorage.NOME_DE_USUARIO 
-        var telefone = sessionStorage.TELEFONE_USUARIO 
-        
-                     
+        var nomeDeUsuarioInput = sessionStorage.NOME_DE_USUARIO;
+        var telefone = sessionStorage.TELEFONE_USUARIO;  
         var b_usuario = document.getElementById("b_usuario");
 
         if (email != null && nome != null && imagem != null) {

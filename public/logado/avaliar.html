@@ -21,7 +21,7 @@
 
             <div class="divLinks">
                 <button><a class="links" href="./perfil.html">Perfil do Usuário</a></button>
-                <button class="ative"><a class="links" href="./avaliar.html">Avaliar Séries</a></button>
+                <button class="ative"><a class="links" href="./cadastrarSerie.html">Avaliar Séries</a></button>
                 <button><a class="links" href="./dashboard.html">Dashboard</a></button>
                 <button><a class="links" href="./avaliacoes.html">Avaliações</a></button>
                 <h3 onclick="limparSessao()"><a href="../index.html">Sair</a></h3>
@@ -30,86 +30,9 @@
 
         <div class="formularioSerie">
             <div class="cadastroSerie">
-                <div class="tituloSerie">
-                    <h1>Cadastre uma série</h1>
-                </div>
-                <div class="inputSerie1">
-                    <div class="inputBaseSerie">
-                        <span>Nome da Série</span>
-                        <input id="nome_serie_input" type="text" placeholder="Digite o nome da série">
-                        <div class="alerta_erro">
-                            <div class="card_erro" id="cardErroNomeSerie">
-                                <span id="mensagem_erro_nome_serie"></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="inputBaseSerie">
-                        <span>Gênero</span>
-                        <input id="genero_input" type="text" placeholder="Digite o gênero da série">
-                        <div class="alerta_erro">
-                            <div class="card_erro" id="cardErroGenero">
-                                <span id="mensagem_erro_genero_serie"></span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="inputSerie2">
-                    <div class="inputBaseSerie">
-                        <span>Status da Série</span>
-                        <select id="select_status_serie">
-                            <option value="#" disabled selected>Selecione uma opção</option>
-                            <option value="assistido">Assistido</option>
-                            <option value="assistindo">Assistindo</option>
-                        </select>
-                        <div class="alerta_erro">
-                            <div class="card_erro" id="cardErroNomeSerie">
-                                <span id="mensagem_erro_nome_serie"></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="inputBaseSerie">
-                        <span>Quantidade de Episódios</span>
-                        <input id="qtd_eps_input" type="number" placeholder="Digite a quantidade de episódios da série">
-                        <div class="alerta_erro">
-                            <div class="card_erro" id="cardErroQuantidade">
-                                <span id="mensagem_erro_qtd_serie"></span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="inputSerie3">
-                    <div class="inputSinopseSerie">
-                        <span>Sinopse</span>
-                        <textarea id="sinopse_input" type="text" placeholder="Digite a sinopse da série"></textarea>
-                        <div class="alerta_erro">
-                            <div class="card_erro" id="cardErroNomeSinopse">
-                                <span id="mensagem_erro_sinopse_serie"></span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="inputSerie4">
-                    <div class="inputImagemSerie">
-                        <span>Link de endereço da Imagem da Série</span>
-                        <input oninput="verificarFoto()" id="imagem_serie_input" type="url"
-                            placeholder="https://exemplo.com">
-                        <div class="alerta_erro">
-                            <div class="card_erro" id="cardErroImagemSerie">
-                                <span id="mensagem_erro_imagem_serie"></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div>
-                        <div id="imagemSerie" class="imagemSerie">
-                        </div>
-                    </div>
-                </div>
 
                 <div class="tituloSerie2">
-                    <h1>Avaliação</h1>
+                    <h1>Avalie uma série</h1>
                 </div>
 
                 <div class="inputSerie5">
@@ -134,7 +57,7 @@
                 </div>
 
                 <div class="buttonSerie">
-                    <button onclick="cadastrar()">Cadastrar Série</button>
+                    <button onclick="avaliar()">Avaliar Série</button>
                 </div>
             </div>
         </div>
@@ -145,150 +68,53 @@
 
 <script>
 
-    function mostrarErro(spanId, cardId, mensagem) {
-        document.getElementById(spanId).innerHTML = mensagem;
-        document.getElementById(cardId).style.display = 'block';
-    }
-
-    function limparErros() {
-        document.querySelectorAll('.card_erro').forEach(card => {
-            card.style.display = 'none';
-        });
-        document.querySelectorAll('.card_erro span').forEach(span => {
-            span.innerHTML = '';
-        });
-    }
-
-    function verificarFoto() {
-        let imagemSerieVar = imagem_serie_input.value;
-
-        if (imagemSerieVar == '' || !imagemSerieVar.startsWith('https://')) {
-            imagemSerie.innerHTML = `<img src="https://cdn-icons-png.flaticon.com/512/9972/9972749.png" alt="Imagem do Usuário">`;
-        } else {
-            imagemSerie.innerHTML = `<img src="${imagemSerieVar}" alt="Imagem da Série">`;
-        }
-    }
-
     function validarSessao() {
         var nome = sessionStorage.NOME_USUARIO;
-
-
-        var b_usuario = document.getElementById("b_usuario");
-
-        if (nome != null) {
-            b_usuario.innerHTML = nome;
-        } else {
-            window.location = "../login.html";
-        }
+        b_usuario.innerHTML = nome;
     }
 
-    function cadastrar() {
-
-        limparErros();
-
-        var nomeSerieVar = nome_serie_input.value;
-        var generoVar = genero_input.value;
-        var statusSerieVar = select_status_serie.value;
-        var qtdEpisodiosVar = qtd_eps_input.value;
-        var sinopseVar = sinopse_input.value;
-        var imagemCapaSerieVar = imagem_serie_input.value;
+    function avaliar() {
         var avaliacaoVar = avaliacao_input.value;
         var notaVar = nota_serie_input.value;
-        var idUsuarioVar = sessionStorage.ID_USUARIO
+        var idUsuarioVar = sessionStorage.ID_USUARIO;
+        var fkSerieVar = sessionStorage.ID_SERIE;
+        var nomeSerieVar = sessionStorage.NOME_SERIE
+
+        console.log("fkSerie do sessionStorage:", fkSerieVar);
 
         var numeros = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
 
-
-        // Validação imagem
-        var imagemInvalida = 0;
-        if (imagemCapaSerieVar == '') {
-            imagemInvalida++;
-
-            if (imagemInvalida > 0) {
-                mostrarErro('mensagem_erro_imagem_serie', 'cardErroImagemSerie', 'Imagem Inválida');
-            } else {
-                mostrarErro('mensagem_erro_imagem_serie', 'cardErroImagemSerie', 'Imagem Válida');
-            }
-        } else {
-            mostrarErro('mensagem_erro_imagem_serie', 'cardErroImagemSerie', 'Imagem Válida');
-        }
-
-
-        // // Validação Série
-        // var nomeSerieInvalido = 0;
-        // if (nomeSerieVar !== '' && !nomeSerieVar[0].includes(' ')) {
-        //     for (let i = 0; i < nomeSerieVar.length; i++) {
-        //         if (nomeSerieVar[i] == numeros[i]) {
-        //             nomeSerieInvalido++;
-        //         }
-        //         if (nomeSerieVar[i].toUpperCase() == nomeSerieVar[i].toLowerCase()) {
-        //             if (!nomeSerieVar[i].includes(' ')) {
-        //                 nomeSerieInvalido++;
-        //             }
-        //         }
-        //     }
-        //     if (nomeSerieInvalido > 0) {
-        //         mostrarErro('mensagem_erro_nome', 'cardErroNome', 'Nome Inválido');
-        //     } else {
-        //         mostrarErro('mensagem_erro_nome', 'cardErroNome', 'Nome Válido');
-        //     }
-        // } else {
-        //     nomeSerieInvalido++;
-        //     mostrarErro('mensagem_erro_nome', 'cardErroNome', 'Nome Inválido');
-        // }
-
-        // // Validação Gênero
-        // var nomeSerieInvalido = 0;
-        // if (nomeSerieVar !== '' && !nomeSerieVar[0].includes(' ')) {
-        //     for (let i = 0; i < nomeSerieVar.length; i++) {
-        //         if (nomeSerieVar[i] == numeros[i]) {
-        //             nomeSerieInvalido++;
-        //         }
-        //         if (nomeSerieVar[i].toUpperCase() == nomeSerieVar[i].toLowerCase()) {
-        //             if (!nomeSerieVar[i].includes(' ')) {
-        //                 nomeSerieInvalido++;
-        //             }
-        //         }
-        //     }
-        //     if (nomeSerieInvalido > 0) {
-        //         mostrarErro('mensagem_erro_nome', 'cardErroNome', 'Nome Inválido');
-        //     } else {
-        //         mostrarErro('mensagem_erro_nome', 'cardErroNome', 'Nome Válido');
-        //     }
-        // } else {
-        //     nomeSerieInvalido++;
-        //     mostrarErro('mensagem_erro_nome', 'cardErroNome', 'Nome Inválido');
-        // }
-
-        if (nomeSerieVar !== '' && generoVar !== '' && statusSerieVar !== '' && qtdEpisodiosVar !== '' && sinopseVar !== '' && imagemCapaSerieVar !== '' && avaliacaoVar !== '' && notaVar !== '') {
-            fetch("/series/cadastrarSerie", {
+        if (avaliacaoVar !== '' && notaVar !== '') {
+            fetch("/series/avaliarSerie", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify({
-                    nomeSerieServer: nomeSerieVar,
-                    generoServer: generoVar,
-                    statusSerieServer: statusSerieVar,
-                    qtdEpisodiosServer: qtdEpisodiosVar,
-                    sinopseServer: sinopseVar,
                     avaliacaoServer: avaliacaoVar,
                     notaServer: notaVar,
-                    imagemCapaSerieServer: imagemCapaSerieVar,
                     idUsuarioServer: idUsuarioVar,
+                    fkSerieServer: fkSerieVar,
+                    nomeDaSerieServer: nomeSerieVar
                 }),
             })
                 .then(function (resposta) {
                     console.log("resposta status: ", resposta.status);
 
                     if (resposta.ok) {
-                        alert("Cadastro de Série realizado com sucesso! Redirecionando para tela da Dashboard...");
+                        console.log(resposta);
+                        resposta.json().then(json => {
+                            sessionStorage.NOME_SERIE = json.nome_serie;
+                        });
+                    }
+
+                    if (resposta.ok) {
+                        alert("Avaliação de Série realizada com sucesso! Redirecionando para tela da Dashboard...");
                         setTimeout(() => {
                             window.location = "dashboard.html";
                         }, "500");
-                        limparFormulario();
                     } else {
-                        throw "Houve um erro ao tentar realizar o cadastro de série!";
+                        throw "Houve um erro ao tentar realizar a avaliação de série!";
                     }
                 })
                 .catch(function (resposta) {
