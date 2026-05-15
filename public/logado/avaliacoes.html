@@ -30,7 +30,7 @@
 
         <div class="containerCarrossel">
             <h1 class="tituloCarrossel">Avaliações</h1>
-            <div class="carousel">
+            <div class="carousel" id="carousel">
                 
             </div>
         </div>
@@ -56,9 +56,11 @@
                 response.json().then(function (resposta) {
                     console.log(`Séries recebidas: ${JSON.stringify(resposta)}`);
                     for (let i = 0; i < resposta.length; i++) {
-                        carousel.innerHTML = `
+                        carousel.innerHTML += `
                             <div class="cardsDoCarrossel">
-                                i
+                                <h3>${resposta[i].nome_serie_avaliacao}</h3>
+                                <h4>${resposta[i].desc_avaliacao}</h4>
+                                <p>${resposta[i].nota_serie}</p>
                             </div>
                         `;
                     }
