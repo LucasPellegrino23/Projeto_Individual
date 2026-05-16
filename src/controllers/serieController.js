@@ -83,8 +83,8 @@ function listarSerieAcao(req, res){
     })
 }
 
-function listarSerieAcao(req, res){
-    serieModel.listarSerieAcao().then((resultado) =>{
+function listarSerieComedia(req, res){
+    serieModel.listarSerieComedia().then((resultado) =>{
         res.status(200).json(resultado);
     })
 }
