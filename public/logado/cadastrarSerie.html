@@ -20,10 +20,10 @@
             <h3 class="h3Ola">Olá, <span id="b_usuario"></span>!</h3>
 
             <div class="divLinks">
-                <button><a class="links" href="./perfil.html">Perfil do Usuário</a></button>
-                <button class="ative"><a class="links" href="./avaliar.html">Avaliar Séries</a></button>
-                <button><a class="links" href="./dashboard.html">Dashboard</a></button>
-                <button><a class="links" href="./avaliacoes.html">Avaliações</a></button>
+                <a class="links" href="./perfil.html"><button>Perfil do Usuário</button></a>
+                <a class="links" href="./cadastrarSerie.html"><button class="ative">Cadastrar Séries</button></a>
+                <a class="links" href="./dashboard.html"><button>Dashboard</button></a>
+                <a class="links" href="./avaliacoesAcao.html"><button>Avaliações</button></a>
                 <h3 onclick="limparSessao()"><a href="../index.html">Sair</a></h3>
             </div>
         </div>
@@ -34,7 +34,7 @@
                     <h1>Cadastre uma série</h1>
                 </div>
                 <div class="inputSerie1">
-                    <div class="inputBaseSerie">
+                    <div class="inputBaseSerieNome">
                         <span>Nome da Série</span>
                         <input id="nome_serie_input" type="text" placeholder="Digite o nome da série">
                         <div class="alerta_erro">
@@ -43,28 +43,25 @@
                             </div>
                         </div>
                     </div>
-                    <div class="inputBaseSerie">
-                        <span>Gênero</span>
-                        <input id="genero_input" type="text" placeholder="Digite o gênero da série">
-                        <div class="alerta_erro">
-                            <div class="card_erro" id="cardErroGenero">
-                                <span id="mensagem_erro_genero_serie"></span>
-                            </div>
-                        </div>
-                    </div>
                 </div>
 
                 <div class="inputSerie2">
                     <div class="inputBaseSerie">
-                        <span>Status da Série</span>
-                        <select id="select_status_serie">
-                            <option value="#" disabled selected>Selecione uma opção</option>
-                            <option value="assistido">Assistido</option>
-                            <option value="assistindo">Assistindo</option>
+                        <span>Gênero</span>
+                        <select id="select_genero">
+                            <option value="#" disabled selected>Selecione um gênero</option>
+                            <option value="Terror">Terror</option>
+                            <option value="Ação">Ação</option>
+                            <option value="Comédia">Comédia</option>
+                            <option value="Serial Killer">Serial Killer</option>
+                            <option value="Dorama">Dorama</option>
+                            <option value="Ficção">Ficção</option>
+                            <option value="Ficção Científica">Ficção Científica</option>
+                            <option value="Suspense">Suspense</option>
                         </select>
                         <div class="alerta_erro">
-                            <div class="card_erro" id="cardErroNomeSerie">
-                                <span id="mensagem_erro_nome_serie"></span>
+                            <div class="card_erro" id="cardErroGenero">
+                                <span id="mensagem_erro_genero_serie"></span>
                             </div>
                         </div>
                     </div>
@@ -138,8 +135,7 @@
     function cadastrar() {
 
         var nomeSerieVar = nome_serie_input.value;
-        var generoVar = genero_input.value;
-        var statusSerieVar = select_status_serie.value;
+        var generoVar = select_genero.value;
         var qtdEpisodiosVar = qtd_eps_input.value;
         var sinopseVar = sinopse_input.value;
         var imagemCapaSerieVar = imagem_serie_input.value;
@@ -148,7 +144,7 @@
         var numeros = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
 
 
-        if (nomeSerieVar !== '' && generoVar !== '' && statusSerieVar !== '' && qtdEpisodiosVar !== '' && sinopseVar !== '' && imagemCapaSerieVar !== '') {
+        if (nomeSerieVar !== '' && generoVar !== '' && qtdEpisodiosVar !== '' && sinopseVar !== '' && imagemCapaSerieVar !== '') {
             fetch("/series/cadastrarSerie", {
                 method: "POST",
                 headers: {
@@ -157,7 +153,6 @@
                 body: JSON.stringify({
                     nomeSerieServer: nomeSerieVar,
                     generoServer: generoVar,
-                    statusSerieServer: statusSerieVar,
                     qtdEpisodiosServer: qtdEpisodiosVar,
                     sinopseServer: sinopseVar,
                     imagemCapaSerieServer: imagemCapaSerieVar,

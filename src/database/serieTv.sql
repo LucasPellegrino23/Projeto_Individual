@@ -15,10 +15,9 @@ CREATE TABLE usuario(
 CREATE TABLE serie(
 	id_serie INT PRIMARY KEY AUTO_INCREMENT,
     nome_serie VARCHAR(60) UNIQUE,
-    status_serie VARCHAR(20),
-    CONSTRAINT cons_status_serie CHECK(status_serie IN('assistido', 'assistindo')),
-    sinopse VARCHAR(700),
+    sinopse VARCHAR(1000),
     genero VARCHAR(50),
+    CONSTRAINT cons_genero CHECK(genero IN ('Terror', 'Ação', 'Comédia', 'Serial Killer', 'Dorama', 'Ficção', 'Ficção Científica', 'Suspense')),
     qtd_episodios INT,
     imagem VARCHAR(500),
     fk_usuario INT,
@@ -36,9 +35,19 @@ CREATE TABLE avaliacao(
     CONSTRAINT cons_fk_usuario_2 FOREIGN KEY (fk_usuario_2) REFERENCES usuario(id_usuario)
 );
 
+SELECT imagem, nome_serie_avaliacao, desc_avaliacao, nota_serie FROM avaliacao JOIN serie ON id_serie = fk_serie WHERE genero = 'Ação';
+SELECT imagem, nome_serie_avaliacao, desc_avaliacao, nota_serie FROM avaliacao JOIN serie ON id_serie = fk_serie WHERE genero = 'Terror';
+SELECT imagem, nome_serie_avaliacao, desc_avaliacao, nota_serie FROM avaliacao JOIN serie ON id_serie = fk_serie WHERE genero = 'Comédia';
+SELECT imagem, nome_serie_avaliacao, desc_avaliacao, nota_serie FROM avaliacao JOIN serie ON id_serie = fk_serie WHERE genero = 'Serial Killer';
+SELECT imagem, nome_serie_avaliacao, desc_avaliacao, nota_serie FROM avaliacao JOIN serie ON id_serie = fk_serie WHERE genero = 'Dorama';
+SELECT imagem, nome_serie_avaliacao, desc_avaliacao, nota_serie FROM avaliacao JOIN serie ON id_serie = fk_serie WHERE genero = 'Ficção';
+SELECT imagem, nome_serie_avaliacao, desc_avaliacao, nota_serie FROM avaliacao JOIN serie ON id_serie = fk_serie WHERE genero = 'Ficção Científica';
+SELECT imagem, nome_serie_avaliacao, desc_avaliacao, nota_serie FROM avaliacao JOIN serie ON id_serie = fk_serie WHERE genero = 'Suspense';
+
 SELECT * FROM usuario;
 SELECT * FROM serie;
-SELECT * FROM avaliacao;
+SELECT * FROM avaliacao;	
 
-DROP TABLE avaliacao;
+drop table avaliacao;
+DROP TABLE serie;
 truncate serie;

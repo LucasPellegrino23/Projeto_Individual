@@ -20,18 +20,28 @@
             <h3 class="h3Ola">Olá, <span id="b_usuario"></span>!</h3>
 
             <div class="divLinks">
-                <button><a class="links" href="./perfil.html">Perfil do Usuário</a></button>
-                <button><a class="links" href="./cadastrarSerie.html">Avaliar Séries</a></button>
-                <button><a class="links" href="./dashboard.html">Dashboard</a></button>
-                <button class="ative"><a class="links" href="./avaliacoes.html">Avaliações</a></button>
+                <a class="links" href="./perfil.html"><button class="ative">Perfil do Usuário</button></a>
+                <a class="links" href="./cadastrarSerie.html"><button>Cadastrar Séries</button></a>
+                <a class="links" href="./dashboard.html"><button>Dashboard</button></a>
+                <a class="links" href="./avaliacoesAcao.html"><button>Avaliações</button></a>
                 <h3 onclick="limparSessao()"><a href="../index.html">Sair</a></h3>
             </div>
         </div>
 
         <div class="containerCarrossel">
             <h1 class="tituloCarrossel">Avaliações</h1>
+            <div class="buttonsCarrosel">
+                <a class="linksCarrosel" href="./avaliacoesAcao.html"><button>Ação</button></a>
+                <a class="linksCarrosel" href="./avaliacoesTerror.html"><button>Terror</button></a>
+                <a class="linksCarrosel" href="./avaliacoesComedia.html"><button>Comédia</button></a>
+                <a class="linksCarrosel" href="./avaliacoesSerialKiller.html"><button>Serial Killer</button></a>
+                <a class="linksCarrosel" href="./avaliacoesDorama.html"><button>Dorama</button></a>
+                <a class="linksCarrosel" href="./avaliacoesFiccao.html"><button>Ficção</button></a>
+                <a class="linksCarrosel" href="./avaliacoesFiccaoCientifica.html"><button class="ativeCarrosel">Ficção Científica</button></a>
+                <a class="linksCarrosel" href="./avaliacoesSuspense.html"><button>Suspense</button></a>
+            </div>
             <div class="carousel" id="carousel">
-                
+
             </div>
         </div>
     </div>
@@ -42,22 +52,23 @@
 <script>
     function validarSessao() {
         var nome = sessionStorage.NOME_USUARIO;
-            b_usuario.innerHTML = nome;
+        b_usuario.innerHTML = nome;
     }
 
-    window.onload = function(){
+    window.onload = function () {
         exibirSeries();
         validarSessao();
-    } 
+    }
 
     function exibirSeries() {
-        fetch(`/series/listarSerie`).then(function (response) {
+        fetch(`/series/listarSerieFiccaoCientifica`).then(function (response) {
             if (response.ok) {
                 response.json().then(function (resposta) {
                     console.log(`Séries recebidas: ${JSON.stringify(resposta)}`);
                     for (let i = 0; i < resposta.length; i++) {
                         carousel.innerHTML += `
                             <div class="cardsDoCarrossel">
+                                <img src="${resposta[i].imagem}" alt="Imagem Série" class="imagemAvaliacao">
                                 <h3>${resposta[i].nome_serie_avaliacao}</h3>
                                 <h4>${resposta[i].desc_avaliacao}</h4>
                                 <p>${resposta[i].nota_serie}</p>

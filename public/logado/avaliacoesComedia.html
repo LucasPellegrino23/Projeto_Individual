@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SeriesTV | Séries Avaliadas</title>
+
+    <link rel="stylesheet" href="../css/styleLogador.css">
+    <script src="../js/sessao.js"></script>
+    <script src="../js/alerta.js"></script>
+</head>
+
+<body>
+    <div class="containerPagina">
+        <div class="navegacao">
+            <div class="divLogo">
+                <img src="../assets/logo.png" alt="Logo SeriesTv">
+            </div>
+            <h3 class="h3Ola">Olá, <span id="b_usuario"></span>!</h3>
+
+            <div class="divLinks">
+                <a class="links" href="./perfil.html"><button class="ative">Perfil do Usuário</button></a>
+                <a class="links" href="./cadastrarSerie.html"><button>Cadastrar Séries</button></a>
+                <a class="links" href="./dashboard.html"><button>Dashboard</button></a>
+                <a class="links" href="./avaliacoesAcao.html"><button>Avaliações</button></a>
+                <h3 onclick="limparSessao()"><a href="../index.html">Sair</a></h3>
+            </div>
+        </div>
+
+        <div class="containerCarrossel">
+            <h1 class="tituloCarrossel">Avaliações</h1>
+            <div class="buttonsCarrosel">
+                <a class="linksCarrosel" href="./avaliacoesAcao.html"><button>Ação</button></a>
+                <a class="linksCarrosel" href="./avaliacoesTerror.html"><button>Terror</button></a>
+                <a class="linksCarrosel" href="./avaliacoesComedia.html"><button class="ativeCarrosel">Comédia</button></a>
+                <a class="linksCarrosel" href="./avaliacoesSerialKiller.html"><button>Serial Killer</button></a>
+                <a class="linksCarrosel" href="./avaliacoesDorama.html"><button>Dorama</button></a>
+                <a class="linksCarrosel" href="./avaliacoesFiccao.html"><button>Ficção</button></a>
+                <a class="linksCarrosel" href="./avaliacoesFiccaoCientifica.html"><button>Ficção Científica</button></a>
+                <a class="linksCarrosel" href="./avaliacoesSuspense.html"><button>Suspense</button></a>
+            </div>
+            <div class="carousel" id="carousel">
+
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+
+<script>
+    function validarSessao() {
+        var nome = sessionStorage.NOME_USUARIO;
+        b_usuario.innerHTML = nome;
+    }
+
+    window.onload = function () {
+        exibirSeries();
+        validarSessao();
+    }
+
+    function exibirSeries() {
+        fetch(`/series/listarSerieComedia`).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (resposta) {
+                    console.log(`Séries recebidas: ${JSON.stringify(resposta)}`);
+                    for (let i = 0; i < resposta.length; i++) {
+                        carousel.innerHTML += `
+                            <div class="cardsDoCarrossel">
+                                <img src="${resposta[i].imagem}" alt="Imagem Série" class="imagemAvaliacao">
+                                <h3>${resposta[i].nome_serie_avaliacao}</h3>
+                                <h4>${resposta[i].desc_avaliacao}</h4>
+                                <p>${resposta[i].nota_serie}</p>
+                            </div>
+                        `;
+                    }
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados: ${error.message}`);
+            });
+    }
+</script>

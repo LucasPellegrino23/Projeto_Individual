@@ -3,7 +3,6 @@ var serieModel = require("../models/serieModel");
 function cadastrarSerie(req, res) {
     var nomeSerie = req.body.nomeSerieServer;
     var genero = req.body.generoServer;
-    var statusSerie = req.body.statusSerieServer;
     var qtdEpisodio = req.body.qtdEpisodiosServer;
     var sinopse = req.body.sinopseServer;
     var imagemSerie = req.body.imagemCapaSerieServer;
@@ -13,8 +12,6 @@ function cadastrarSerie(req, res) {
         res.status(400).send("O nome da série está undefined!");
     } else if(genero == undefined){
         res.status(400).send("O gênero da série está undefined!");
-    } else if (statusSerie == undefined) {
-        res.status(400).send("O status da série está undefined!");
     } else if (qtdEpisodio == undefined) {
         res.status(400).send("A quantidade de episódios está undefined!");
     } else if (sinopse == undefined) {
@@ -25,7 +22,7 @@ function cadastrarSerie(req, res) {
         res.status(400).send("O id do usuário está undefined!");
     } else {
 
-        serieModel.cadastrarSerie(nomeSerie, statusSerie, sinopse, genero, qtdEpisodio, imagemSerie, idUsuario)
+        serieModel.cadastrarSerie(nomeSerie, sinopse, genero, qtdEpisodio, imagemSerie, idUsuario)
             .then(
                 function (resultado) {
                     res.status(200).json({ id_serie: resultado.insertId})
@@ -80,12 +77,54 @@ function avaliarSerie(req, res) {
     }
 }
 
-function listarSerie(req, res){
-    serieModel.listarSerie().then((resultado) =>{
+function listarSerieAcao(req, res){
+    serieModel.listarSerieAcao().then((resultado) =>{
+        res.status(200).json(resultado);
+    })
+}
+
+function listarSerieAcao(req, res){
+    serieModel.listarSerieAcao().then((resultado) =>{
+        res.status(200).json(resultado);
+    })
+}
+
+function listarSerieTerror(req, res){
+    serieModel.listarSerieTerror().then((resultado) =>{
+        res.status(200).json(resultado);
+    })
+}
+
+function listarSerieSerialKiller(req, res){
+    serieModel.listarSerieSerialKiller().then((resultado) =>{
+        res.status(200).json(resultado);
+    })
+}
+
+function listarSerieDorama(req, res){
+    serieModel.listarSerieDorama().then((resultado) =>{
+        res.status(200).json(resultado);
+    })
+}
+
+function listarSerieFiccao(req, res){
+    serieModel.listarSerieFiccao().then((resultado) =>{
+        res.status(200).json(resultado);
+    })
+}
+
+function listarSerieFiccaoCientifica(req, res){
+    serieModel.listarSerieFiccaoCientifica().then((resultado) =>{
+        res.status(200).json(resultado);
+    })
+}
+
+function listarSerieSuspense(req, res){
+    serieModel.listarSerieSuspense().then((resultado) =>{
         res.status(200).json(resultado);
     })
 }
 
 module.exports = {
-    cadastrarSerie, avaliarSerie, listarSerie
+    cadastrarSerie, avaliarSerie, listarSerieAcao, listarSerieTerror, listarSerieComedia, listarSerieSerialKiller, listarSerieDorama, listarSerieFiccao, listarSerieFiccaoCientifica, listarSerieSuspense
 }
