@@ -24,6 +24,18 @@ function avaliarSerie(nomeDaSerie, avaliacao, nota, idUsuario, fk_serie) {
     return database.executar(instrucaoSql1);
 }
 
+function buscarGenero() {
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrarSerie():",);
+
+    var instrucaoSql1 = `
+        SELECT genero, COUNT(id_avaliacao) AS qtd_avaliacao FROM serie JOIN avaliacao ON serie.id_serie = avaliacao.fk_serie GROUP BY genero;
+    `;
+
+    console.log("Executando SQL 1: \n" + instrucaoSql1);
+
+    return database.executar(instrucaoSql1);
+}
+
 function listarSerieAcao() {
     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrarSerie():",);
 
@@ -123,5 +135,5 @@ function listarSerieSuspense() {
 
 
 module.exports = {
-    cadastrarSerie, avaliarSerie, listarSerieAcao, listarSerieTerror, listarSerieComedia, listarSerieSerialKiller, listarSerieDorama, listarSerieFiccao, listarSerieFiccaoCientifica, listarSerieSuspense
+    cadastrarSerie, avaliarSerie, buscarGenero, listarSerieAcao, listarSerieTerror, listarSerieComedia, listarSerieSerialKiller, listarSerieDorama, listarSerieFiccao, listarSerieFiccaoCientifica, listarSerieSuspense
 };

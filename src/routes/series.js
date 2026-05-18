@@ -11,6 +11,10 @@ router.post("/avaliarSerie", function (req, res) {
     serieController.avaliarSerie(req, res);
 })
 
+router.get("/buscarGenero", function(req, res){
+    serieController.buscarGenero(req, res);
+})
+
 router.get("/listarSerieAcao", function(req, res){
     serieController.listarSerieAcao(req, res);
 })
