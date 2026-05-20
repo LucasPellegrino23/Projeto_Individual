@@ -88,12 +88,10 @@
             .then(function (resposta) {
                 resposta.json().then(json => {
                     if (json.encontrado) {
-                        // Série encontrada — salva o id para usar na avaliação
                         idSerieEncontrada = json.id_serie;
                         feedback_serie.innerHTML = `Série "${json.nome_serie}" encontrada!`;
                         feedback_serie.style.color = "green";
                     } else {
-                        // Não encontrou
                         idSerieEncontrada = null;
                         feedback_serie.innerHTML = "Série não encontrada!";
                         feedback_serie.style.color = "red";
@@ -107,9 +105,8 @@
         var avaliacaoVar = avaliacao_input.value;
         var notaVar = nota_serie_input.value;
         var idUsuarioVar = sessionStorage.ID_USUARIO;
-        var nomeSerieVar = nome_serie_existente_input.value; // ← pega do input direto
+        var nomeSerieVar = nome_serie_existente_input.value; 
 
-        // Bloqueia se não encontrou a série
         if (idSerieEncontrada == null) {
             alert("Busque uma série válida antes de avaliar!");
             return;
@@ -123,8 +120,8 @@
                     avaliacaoServer: avaliacaoVar,
                     notaServer: notaVar,
                     idUsuarioServer: idUsuarioVar,
-                    fkSerieServer: idSerieEncontrada,  // ← id vindo da busca
-                    nomeDaSerieServer: nomeSerieVar    // ← nome vindo do input
+                    fkSerieServer: idSerieEncontrada,
+                    nomeDaSerieServer: nomeSerieVar   
                 }),
             })
             .then(function (resposta) {
