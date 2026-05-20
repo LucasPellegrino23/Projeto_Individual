@@ -93,7 +93,7 @@
                         feedback_serie.style.color = "green";
                     } else {
                         idSerieEncontrada = null;
-                        feedback_serie.innerHTML = "Série não encontrada!";
+                        feedback_serie.innerHTML = `Série não encontrada!`;
                         feedback_serie.style.color = "red";
                     }
                 });
@@ -108,7 +108,7 @@
         var nomeSerieVar = nome_serie_existente_input.value; 
 
         if (idSerieEncontrada == null) {
-            alert("Busque uma série válida antes de avaliar!");
+            alert("Busque uma série válida antes de avalia-lá!");
             return;
         }
 
@@ -126,10 +126,10 @@
             })
             .then(function (resposta) {
                 if (resposta.ok) {
-                    alert("Avaliação realizada com sucesso! Redirecionando...");
+                    alert("Avaliação realizada com sucesso! Redirecionando para a tela da dashboard...");
                     setTimeout(() => { window.location = "dashboard.html"; }, 500);
                 } else {
-                    throw "Erro ao avaliar série!";
+                    throw "Erro ao avaliar a série existente!";
                 }
             })
             .catch(erro => console.log("#ERRO:", erro));
