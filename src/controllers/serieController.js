@@ -83,6 +83,12 @@ function buscarGenero(req, res){
     })
 }
 
+// function kpiMaisAvaliada(req, res){
+//     serieModel.kpiMaisAvaliada().then((resultado) =>{
+//         res.status(200).json(resultado);
+//     })
+// }
+
 function listarSerieAcao(req, res){
     serieModel.listarSerieAcao().then((resultado) =>{
         res.status(200).json(resultado);
@@ -131,6 +137,34 @@ function listarSerieSuspense(req, res){
     })
 }
 
+function buscarSeriePorNome(req, res) {
+    var nomeSerie = req.body.nomeSerieServer;
+
+    if (nomeSerie == undefined) {
+        res.status(400).send("O nome da série está undefined!");
+    } else   {
+        serieModel.buscarSeriePorNome(nomeSerie)
+            .then(function (resultado){
+                if(resultado.length == 0){
+                    return res.status(404).json({ encontrado: false });
+                } else{
+                    res.status(200).json({
+                        encontrado: true,
+                        id_serie: resultado[0].id_serie,
+                        nome_serie: resultado[0].nome_serie
+                    })
+                }
+            }
+                
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+    }
+}
+
 module.exports = {
-    cadastrarSerie, avaliarSerie, buscarGenero, listarSerieAcao, listarSerieTerror, listarSerieComedia, listarSerieSerialKiller, listarSerieDorama, listarSerieFiccao, listarSerieFiccaoCientifica, listarSerieSuspense
+    cadastrarSerie, avaliarSerie, buscarGenero, listarSerieAcao, listarSerieTerror, listarSerieComedia, listarSerieSerialKiller, listarSerieDorama, listarSerieFiccao, listarSerieFiccaoCientifica, listarSerieSuspense, buscarSeriePorNome
 }

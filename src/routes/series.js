@@ -15,6 +15,10 @@ router.get("/buscarGenero", function(req, res){
     serieController.buscarGenero(req, res);
 })
 
+// router.get("/kpiMaisAvaliada", function(req, res){
+//     serieController.kpiMaisAvaliada(req, res);
+// })
+
 router.get("/listarSerieAcao", function(req, res){
     serieController.listarSerieAcao(req, res);
 })
@@ -47,4 +51,7 @@ router.get("/listarSerieSuspense", function(req, res){
     serieController.listarSerieSuspense(req, res);
 })
 
+router.post("/buscarSeriePorNome", function (req, res) {
+    serieController.buscarSeriePorNome(req, res);
+})
 module.exports = router;

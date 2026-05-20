@@ -36,6 +36,18 @@ function buscarGenero() {
     return database.executar(instrucaoSql1);
 }
 
+// function kpiMaisAvaliada() {
+//     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrarSerie():",);
+
+//     var instrucaoSql1 = `
+//         SELECT nome_serie, AVG(nota_serie) AS media_avaliacao FROM serie JOIN avaliacao ON serie.id_serie = avaliacao.fk_serie GROUP BY nome_serie;
+//     `;
+
+//     console.log("Executando SQL 1: \n" + instrucaoSql1);
+
+//     return database.executar(instrucaoSql1);
+// }
+
 function listarSerieAcao() {
     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrarSerie():",);
 
@@ -124,7 +136,7 @@ function listarSerieSuspense() {
     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrarSerie():",);
 
     var instrucaoSql1 = `
-        SELECT imagem, nome_serie_avaliacao, desc_avaliacao, nota_serie FROM avaliacao JOIN serie ON id_serie = fk_serie WHERE genero = 'Suspense';
+        SELECT nome_de_usuario, imagem, nome_serie_avaliacao, desc_avaliacao, nota_serie FROM avaliacao JOIN serie ON id_serie = fk_serie JOIN usuario ON usuario.id_usuario = avaliacao.fk_usuario_2 WHERE genero = 'Suspense';
     `;
 
     console.log("Executando SQL 1: \n" + instrucaoSql1);
@@ -132,8 +144,18 @@ function listarSerieSuspense() {
     return database.executar(instrucaoSql1);
 }
 
+function buscarSeriePorNome(nomeSerie) {
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrarSerie():",);
 
+    var instrucaoSql1 = `
+        SELECT id_serie, nome_serie FROM serie WHERE nome_serie = '${nomeSerie}';
+    `;
+
+    console.log("Executando SQL 1: \n" + instrucaoSql1);
+
+    return database.executar(instrucaoSql1);
+}
 
 module.exports = {
-    cadastrarSerie, avaliarSerie, buscarGenero, listarSerieAcao, listarSerieTerror, listarSerieComedia, listarSerieSerialKiller, listarSerieDorama, listarSerieFiccao, listarSerieFiccaoCientifica, listarSerieSuspense
+    cadastrarSerie, avaliarSerie, buscarGenero, listarSerieAcao, listarSerieTerror, listarSerieComedia, listarSerieSerialKiller, listarSerieDorama, listarSerieFiccao, listarSerieFiccaoCientifica, listarSerieSuspense, buscarSeriePorNome
 };

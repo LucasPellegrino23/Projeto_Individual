@@ -41,6 +41,7 @@
                     <div class="inputBaseSerieNota">
                         <span>Nome da Série</span>
                         <input id="nome_serie_existente_input" type="text" placeholder="Nome série">
+                        <span id="feedback_serie"></span>
                     </div>
                     <div class="buttonSerie">
                         <button onclick="buscarSerie()">Buscar Série</button>
@@ -67,61 +68,74 @@
 </html>
 
 <script>
-
+    var idSerieEncontrada = null;
+        
     function validarSessao() {
         var nome = sessionStorage.NOME_USUARIO;
         b_usuario.innerHTML = nome;
     }
 
+    function buscarSerie() {
+        var nomeSerieVar = nome_serie_existente_input.value;
+
+        if (nomeSerieVar == '') return;
+
+        fetch("/series/buscarSeriePorNome", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ nomeSerieServer: nomeSerieVar }),
+        })
+            .then(function (resposta) {
+                resposta.json().then(json => {
+                    if (json.encontrado) {
+                        // Série encontrada — salva o id para usar na avaliação
+                        idSerieEncontrada = json.id_serie;
+                        feedback_serie.innerHTML = `Série "${json.nome_serie}" encontrada!`;
+                        feedback_serie.style.color = "green";
+                    } else {
+                        // Não encontrou
+                        idSerieEncontrada = null;
+                        feedback_serie.innerHTML = "Série não encontrada!";
+                        feedback_serie.style.color = "red";
+                    }
+                });
+            })
+            .catch(erro => console.log("#ERRO:", erro));
+    }
+
     function avaliar() {
-        var nomeSerieExistenteVar = nome_serie_existente.value;
         var avaliacaoVar = avaliacao_input.value;
         var notaVar = nota_serie_input.value;
         var idUsuarioVar = sessionStorage.ID_USUARIO;
-        var fkSerieVar = sessionStorage.ID_SERIE;
-        var nomeSerieVar = sessionStorage.NOME_SERIE
+        var nomeSerieVar = nome_serie_existente_input.value; // ← pega do input direto
 
-        console.log("fkSerie do sessionStorage:", fkSerieVar);
-
-        var numeros = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
+        // Bloqueia se não encontrou a série
+        if (idSerieEncontrada == null) {
+            alert("Busque uma série válida antes de avaliar!");
+            return;
+        }
 
         if (avaliacaoVar !== '' && notaVar !== '') {
             fetch("/series/avaliarSerie", {
                 method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
+                headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
-                    nomeSerieExistenteServer: nomeSerieExistenteVar,
                     avaliacaoServer: avaliacaoVar,
                     notaServer: notaVar,
                     idUsuarioServer: idUsuarioVar,
-                    fkSerieServer: fkSerieVar,
-                    nomeDaSerieServer: nomeSerieVar
+                    fkSerieServer: idSerieEncontrada,  // ← id vindo da busca
+                    nomeDaSerieServer: nomeSerieVar    // ← nome vindo do input
                 }),
             })
-                .then(function (resposta) {
-                    console.log("resposta status: ", resposta.status);
-
-                    if (resposta.ok) {
-                        console.log(resposta);
-                        resposta.json().then(json => {
-                            sessionStorage.NOME_SERIE = json.nome_serie;
-                        });
-                    }
-
-                    if (resposta.ok) {
-                        alert("Avaliação de Série realizada com sucesso! Redirecionando para tela da Dashboard...");
-                        setTimeout(() => {
-                            window.location = "dashboard.html";
-                        }, "500");
-                    } else {
-                        throw "Houve um erro ao tentar realizar a avaliação de série!";
-                    }
-                })
-                .catch(function (resposta) {
-                    console.log(`#ERRO: ${resposta}`);
-                });
+            .then(function (resposta) {
+                if (resposta.ok) {
+                    alert("Avaliação realizada com sucesso! Redirecionando...");
+                    setTimeout(() => { window.location = "dashboard.html"; }, 500);
+                } else {
+                    throw "Erro ao avaliar série!";
+                }
+            })
+            .catch(erro => console.log("#ERRO:", erro));
 
             return false;
         }
