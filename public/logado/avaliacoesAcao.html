@@ -69,6 +69,7 @@
                     for (let i = 0; i < resposta.length; i++) {
                         carousel.innerHTML += `
                             <div class="cardsDoCarrossel">
+                                <h2>${resposta[i].nome_de_usuario}</h2>
                                 <img src="${resposta[i].imagem}" alt="Imagem Série" class="imagemAvaliacao">
                                 <h3>${resposta[i].nome_serie_avaliacao}</h3>
                                 <h4>Avaliação: ${resposta[i].desc_avaliacao}</h4>

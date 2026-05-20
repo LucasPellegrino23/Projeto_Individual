@@ -83,12 +83,6 @@ function buscarGenero(req, res){
     })
 }
 
-// function kpiMaisAvaliada(req, res){
-//     serieModel.kpiMaisAvaliada().then((resultado) =>{
-//         res.status(200).json(resultado);
-//     })
-// }
-
 function listarSerieAcao(req, res){
     serieModel.listarSerieAcao().then((resultado) =>{
         res.status(200).json(resultado);
@@ -137,6 +131,18 @@ function listarSerieSuspense(req, res){
     })
 }
 
+function kpiMaisAvaliada(req, res){
+    serieModel.kpiMaisAvaliada().then((resultado) =>{
+        res.status(200).json(resultado);
+    })
+}
+
+function kpiMenosAvaliada(req, res){
+    serieModel.kpiMenosAvaliada().then((resultado) =>{
+        res.status(200).json(resultado);
+    })
+}
+
 function buscarSeriePorNome(req, res) {
     var nomeSerie = req.body.nomeSerieServer;
 
@@ -166,5 +172,5 @@ function buscarSeriePorNome(req, res) {
 }
 
 module.exports = {
-    cadastrarSerie, avaliarSerie, buscarGenero, listarSerieAcao, listarSerieTerror, listarSerieComedia, listarSerieSerialKiller, listarSerieDorama, listarSerieFiccao, listarSerieFiccaoCientifica, listarSerieSuspense, buscarSeriePorNome
+    cadastrarSerie, avaliarSerie, buscarGenero, listarSerieAcao, listarSerieTerror, listarSerieComedia, listarSerieSerialKiller, listarSerieDorama, listarSerieFiccao, listarSerieFiccaoCientifica, listarSerieSuspense, kpiMaisAvaliada, kpiMenosAvaliada, buscarSeriePorNome
 }

@@ -13,7 +13,7 @@
     <script src="../js/sessao.js"></script>
     <script src="../js/alerta.js"></script>
 
-<body onload="validarSessao(); obterDadosGrafico(); puxarKpi()">
+<body onload="validarSessao(); obterDadosGrafico(); puxarKpiMaior(), puxarKpiMenor()">
 
     <div class="containerPagina">
         <div class="navegacao">
@@ -50,7 +50,7 @@
                 <div class="kpi3">
                     <h3 class="tituloKpi">Série <span class="descKpi">mais rejeitada</span></h3>
 
-                    <h4 class="serieKpi">Resident Evil: A série - Média das notas: <span class="notaKpi">4,3</span></h4>
+                    <h4 class="serieKpi" id="serieMenosAvaliada"></span></h4>
                 </div>
             </div>
 
@@ -72,14 +72,34 @@
         b_usuario.innerHTML = nome;
     }
 
-    function puxarKpi(){
+    function puxarKpiMaior(){
         fetch(`/series/kpiMaisAvaliada`).then(function (response) {
             if (response.ok) {
                 response.json().then(function (resposta) {
                     console.log(`Dados KPI recebidas: ${JSON.stringify(resposta)}`);
                     for (let i = 0; i < resposta.length; i++) {
                         serieMaisAvaliada.innerHTML += `
-                            ${nome_serie} - Média das notas: <span class="notaKpi">${media_avaliacao}</span>
+                            ${resposta[i].nome_serie_avaliacao} - Média das notas: <span class="notaKpi">${resposta[i].media_notas}</span>
+                        `;
+                    }
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados: ${error.message}`);
+            });
+    }
+
+    function puxarKpiMenor(){
+        fetch(`/series/kpiMenosAvaliada`).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (resposta) {
+                    console.log(`Dados KPI recebidas: ${JSON.stringify(resposta)}`);
+                    for (let i = 0; i < resposta.length; i++) {
+                        serieMenosAvaliada.innerHTML += `
+                            ${resposta[i].nome_serie_avaliacao} - Média das notas: <span class="notaKpi">${resposta[i].media_notas}</span>
                         `;
                     }
                 });

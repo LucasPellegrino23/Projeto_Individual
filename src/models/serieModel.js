@@ -52,7 +52,7 @@ function listarSerieAcao() {
     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrarSerie():",);
 
     var instrucaoSql1 = `
-        SELECT imagem, nome_serie_avaliacao, desc_avaliacao, nota_serie FROM avaliacao JOIN serie ON id_serie = fk_serie WHERE genero = 'Ação';
+        SELECT nome_de_usuario, imagem, nome_serie_avaliacao, desc_avaliacao, nota_serie FROM avaliacao JOIN serie ON id_serie = fk_serie JOIN usuario ON usuario.id_usuario = avaliacao.fk_usuario_2 WHERE genero = 'Ação';
     `;
 
     console.log("Executando SQL 1: \n" + instrucaoSql1);
@@ -64,7 +64,7 @@ function listarSerieTerror() {
     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrarSerie():",);
 
     var instrucaoSql1 = `
-        SELECT imagem, nome_serie_avaliacao, desc_avaliacao, nota_serie FROM avaliacao JOIN serie ON id_serie = fk_serie WHERE genero = 'Terror';
+        SELECT nome_de_usuario, imagem, nome_serie_avaliacao, desc_avaliacao, nota_serie FROM avaliacao JOIN serie ON id_serie = fk_serie JOIN usuario ON usuario.id_usuario = avaliacao.fk_usuario_2 WHERE genero = 'Terror';
     `;
 
     console.log("Executando SQL 1: \n" + instrucaoSql1);
@@ -76,7 +76,7 @@ function listarSerieComedia() {
     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrarSerie():",);
 
     var instrucaoSql1 = `
-        SELECT imagem, nome_serie_avaliacao, desc_avaliacao, nota_serie FROM avaliacao JOIN serie ON id_serie = fk_serie WHERE genero = 'Comédia';
+        SELECT nome_de_usuario, imagem, nome_serie_avaliacao, desc_avaliacao, nota_serie FROM avaliacao JOIN serie ON id_serie = fk_serie JOIN usuario ON usuario.id_usuario = avaliacao.fk_usuario_2 WHERE genero = 'Comédia';
     `;
 
     console.log("Executando SQL 1: \n" + instrucaoSql1);
@@ -88,7 +88,7 @@ function listarSerieSerialKiller() {
     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrarSerie():",);
 
     var instrucaoSql1 = `
-        SELECT imagem, nome_serie_avaliacao, desc_avaliacao, nota_serie FROM avaliacao JOIN serie ON id_serie = fk_serie WHERE genero = 'Serial Killer';
+        SELECT nome_de_usuario, imagem, nome_serie_avaliacao, desc_avaliacao, nota_serie FROM avaliacao JOIN serie ON id_serie = fk_serie JOIN usuario ON usuario.id_usuario = avaliacao.fk_usuario_2 WHERE genero = 'Serial Killer';
     `;
 
     console.log("Executando SQL 1: \n" + instrucaoSql1);
@@ -100,7 +100,7 @@ function listarSerieDorama() {
     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrarSerie():",);
 
     var instrucaoSql1 = `
-        SELECT imagem, nome_serie_avaliacao, desc_avaliacao, nota_serie FROM avaliacao JOIN serie ON id_serie = fk_serie WHERE genero = 'Dorama';
+        SELECT nome_de_usuario, imagem, nome_serie_avaliacao, desc_avaliacao, nota_serie FROM avaliacao JOIN serie ON id_serie = fk_serie JOIN usuario ON usuario.id_usuario = avaliacao.fk_usuario_2 WHERE genero = 'Dorama';
     `;
 
     console.log("Executando SQL 1: \n" + instrucaoSql1);
@@ -112,7 +112,7 @@ function listarSerieFiccao() {
     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrarSerie():",);
 
     var instrucaoSql1 = `
-        SELECT imagem, nome_serie_avaliacao, desc_avaliacao, nota_serie FROM avaliacao JOIN serie ON id_serie = fk_serie WHERE genero = 'Ficção';
+        SELECT nome_de_usuario, imagem, nome_serie_avaliacao, desc_avaliacao, nota_serie FROM avaliacao JOIN serie ON id_serie = fk_serie JOIN usuario ON usuario.id_usuario = avaliacao.fk_usuario_2 WHERE genero = 'Ficção';
     `;
 
     console.log("Executando SQL 1: \n" + instrucaoSql1);
@@ -124,7 +124,7 @@ function listarSerieFiccaoCientifica() {
     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrarSerie():",);
 
     var instrucaoSql1 = `
-        SELECT imagem, nome_serie_avaliacao, desc_avaliacao, nota_serie FROM avaliacao JOIN serie ON id_serie = fk_serie WHERE genero = 'Ficção Científica';
+        SELECT nome_de_usuario, imagem, nome_serie_avaliacao, desc_avaliacao, nota_serie FROM avaliacao JOIN serie ON id_serie = fk_serie JOIN usuario ON usuario.id_usuario = avaliacao.fk_usuario_2 WHERE genero = 'Ficção Científica';
     `;
 
     console.log("Executando SQL 1: \n" + instrucaoSql1);
@@ -137,6 +137,30 @@ function listarSerieSuspense() {
 
     var instrucaoSql1 = `
         SELECT nome_de_usuario, imagem, nome_serie_avaliacao, desc_avaliacao, nota_serie FROM avaliacao JOIN serie ON id_serie = fk_serie JOIN usuario ON usuario.id_usuario = avaliacao.fk_usuario_2 WHERE genero = 'Suspense';
+    `;
+
+    console.log("Executando SQL 1: \n" + instrucaoSql1);
+
+    return database.executar(instrucaoSql1);
+}
+
+function kpiMaisAvaliada() {
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrarSerie():",);
+
+    var instrucaoSql1 = `
+        SELECT nome_serie_avaliacao, ROUND(AVG(nota_serie), 1) AS media_notas FROM avaliacao GROUP BY nome_serie_avaliacao ORDER BY media_notas DESC LIMIT 1;
+    `;
+
+    console.log("Executando SQL 1: \n" + instrucaoSql1);
+
+    return database.executar(instrucaoSql1);
+}
+
+function kpiMenosAvaliada() {
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrarSerie():",);
+
+    var instrucaoSql1 = `
+        SELECT nome_serie_avaliacao, ROUND(AVG(nota_serie), 1) AS media_notas FROM avaliacao GROUP BY nome_serie_avaliacao ORDER BY media_notas ASC LIMIT 1;
     `;
 
     console.log("Executando SQL 1: \n" + instrucaoSql1);
@@ -157,5 +181,5 @@ function buscarSeriePorNome(nomeSerie) {
 }
 
 module.exports = {
-    cadastrarSerie, avaliarSerie, buscarGenero, listarSerieAcao, listarSerieTerror, listarSerieComedia, listarSerieSerialKiller, listarSerieDorama, listarSerieFiccao, listarSerieFiccaoCientifica, listarSerieSuspense, buscarSeriePorNome
+    cadastrarSerie, avaliarSerie, buscarGenero, listarSerieAcao, listarSerieTerror, listarSerieComedia, listarSerieSerialKiller, listarSerieDorama, listarSerieFiccao, listarSerieFiccaoCientifica, listarSerieSuspense, kpiMaisAvaliada, kpiMenosAvaliada, buscarSeriePorNome
 };
