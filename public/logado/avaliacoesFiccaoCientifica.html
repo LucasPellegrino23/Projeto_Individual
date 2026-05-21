@@ -29,19 +29,19 @@
             </div>
         </div>
 
-        <div class="containerCarrossel">
-            <h1 class="tituloCarrossel">Avaliações Séries de Ficção Científica</h1>
-            <div class="buttonsCarrossel">
-                <a class="linksCarrosel" href="./avaliacoesAcao.html"><button>Ação</button></a>
-                <a class="linksCarrosel" href="./avaliacoesTerror.html"><button>Terror</button></a>
-                <a class="linksCarrosel" href="./avaliacoesComedia.html"><button>Comédia</button></a>
-                <a class="linksCarrosel" href="./avaliacoesSerialKiller.html"><button>Serial Killer</button></a>
-                <a class="linksCarrosel" href="./avaliacoesDorama.html"><button>Dorama</button></a>
-                <a class="linksCarrosel" href="./avaliacoesFiccao.html"><button>Ficção</button></a>
-                <a class="linksCarrosel" href="./avaliacoesFiccaoCientifica.html"><button class="ativeCarrosel">Ficção Científica</button></a>
-                <a class="linksCarrosel" href="./avaliacoesSuspense.html"><button>Suspense</button></a>
+        <div class="containerAvaliacoes">
+            <h1 class="tituloAvaliacoes">Avaliações Séries de Ficção Científica</h1>
+            <div class="buttonsAvaliacoes">
+                <a class="linksAvaliacoes" href="./avaliacoesAcao.html"><button>Ação</button></a>
+                <a class="linksAvaliacoes" href="./avaliacoesTerror.html"><button>Terror</button></a>
+                <a class="linksAvaliacoes" href="./avaliacoesComedia.html"><button>Comédia</button></a>
+                <a class="linksAvaliacoes" href="./avaliacoesSerialKiller.html"><button>Serial Killer</button></a>
+                <a class="linksAvaliacoes" href="./avaliacoesDorama.html"><button>Dorama</button></a>
+                <a class="linksAvaliacoes" href="./avaliacoesFiccao.html"><button>Ficção</button></a>
+                <a class="linksAvaliacoes" href="./avaliacoesFiccaoCientifica.html"><button class="ativeAvaliacoes">Ficção Científica</button></a>
+                <a class="linksAvaliacoes" href="./avaliacoesSuspense.html"><button>Suspense</button></a>
             </div>
-            <div class="carousel" id="carousel">
+            <div class="avaliacoes" id="avaliacoes">
 
             </div>
         </div>
@@ -67,14 +67,21 @@
                 response.json().then(function (resposta) {
                     console.log(`Séries recebidas: ${JSON.stringify(resposta)}`);
                     for (let i = 0; i < resposta.length; i++) {
-                        carousel.innerHTML += `
-                            <div class="cardsDoCarrossel">
-                                <h2>${resposta[i].nome_de_usuario}</h2>
-                                <img src="${resposta[i].imagem}" alt="Imagem Série" class="imagemAvaliacao">
-                                <h3>${resposta[i].nome_serie_avaliacao}</h3>
-                                <h4>${resposta[i].desc_avaliacao}</h4>
-                                <p>${resposta[i].nota_serie}</p>
+                        avaliacoes.innerHTML += `
+                            <div class="cardsAvaliacoes">
+                                <div class="dentroCardAvaliacoes">
+                                    <img src="${resposta[i].imagem}" alt="Imagem Série" class="imagemAvaliacao">
+                                    
+                                    <div class="informacoesUsuarioAvaliacoes">
+                                        <h3>${resposta[i].nome_de_usuario}</h3>
+                                        <h2>${resposta[i].nome_serie_avaliacao}</h2>
+                                        <h4 class="avaliacaoDaSerie">${resposta[i].desc_avaliacao}</h4>
+                                        <div class="notaSerie"><img src="../assets/image-removebg-preview.png" width="20px"> <p>${resposta[i].nota_serie}</p></div>   
+                                    </div>
+                                </div>
                             </div>
+
+                            <hr class="divisaoAvaliacoes">
                         `;
                     }
                 });
