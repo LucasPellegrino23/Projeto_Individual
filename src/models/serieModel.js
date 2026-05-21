@@ -36,7 +36,7 @@ function buscarGenero() {
     return database.executar(instrucaoSql1);
 }
 
-// function kpiMaisAvaliada() {
+// function kpiMaisBemAvaliada() {
 //     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrarSerie():",);
 
 //     var instrucaoSql1 = `
@@ -144,11 +144,23 @@ function listarSerieSuspense() {
     return database.executar(instrucaoSql1);
 }
 
-function kpiMaisAvaliada() {
+function kpiMaisBemAvaliada() {
     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrarSerie():",);
 
     var instrucaoSql1 = `
         SELECT nome_serie_avaliacao, ROUND(AVG(nota_serie), 1) AS media_notas FROM avaliacao GROUP BY nome_serie_avaliacao ORDER BY media_notas DESC LIMIT 1;
+    `;
+
+    console.log("Executando SQL 1: \n" + instrucaoSql1);
+
+    return database.executar(instrucaoSql1);
+}
+
+function kpiMaisAvaliada() {
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrarSerie():",);
+
+    var instrucaoSql1 = `
+        SELECT nome_serie_avaliacao, COUNT(fk_serie) AS quantidade_avaliacoes FROM avaliacao GROUP BY nome_serie_avaliacao ORDER BY quantidade_avaliacoes DESC LIMIT 1;
     `;
 
     console.log("Executando SQL 1: \n" + instrucaoSql1);
@@ -181,5 +193,5 @@ function buscarSeriePorNome(nomeSerie) {
 }
 
 module.exports = {
-    cadastrarSerie, avaliarSerie, buscarGenero, listarSerieAcao, listarSerieTerror, listarSerieComedia, listarSerieSerialKiller, listarSerieDorama, listarSerieFiccao, listarSerieFiccaoCientifica, listarSerieSuspense, kpiMaisAvaliada, kpiMenosAvaliada, buscarSeriePorNome
+    cadastrarSerie, avaliarSerie, buscarGenero, listarSerieAcao, listarSerieTerror, listarSerieComedia, listarSerieSerialKiller, listarSerieDorama, listarSerieFiccao, listarSerieFiccaoCientifica, listarSerieSuspense, kpiMaisBemAvaliada, kpiMaisAvaliada, kpiMenosAvaliada, buscarSeriePorNome
 };

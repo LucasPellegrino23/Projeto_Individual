@@ -51,6 +51,10 @@ router.get("/listarSerieSuspense", function(req, res){
     serieController.listarSerieSuspense(req, res);
 })
 
+router.get("/kpiMaisBemAvaliada", function(req, res){
+    serieController.kpiMaisBemAvaliada(req, res);
+})
+
 router.get("/kpiMaisAvaliada", function(req, res){
     serieController.kpiMaisAvaliada(req, res);
 })

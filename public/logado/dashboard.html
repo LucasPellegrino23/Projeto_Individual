@@ -13,7 +13,7 @@
     <script src="../js/sessao.js"></script>
     <script src="../js/alerta.js"></script>
 
-<body onload="validarSessao(); obterDadosGrafico(); puxarKpiMaior(), puxarKpiMenor()">
+<body onload="validarSessao(); obterDadosGrafico(); puxarKpiMaior(), puxarKpiMenor(), puxarKpiMaisAvaliacoes()">
 
     <div class="containerPagina">
         <div class="navegacao">
@@ -40,12 +40,12 @@
                 <div class="kpi1">
                     <h3 class="tituloKpi">Série <span class="descKpi">mais avaliadas</span></h3>
 
-                    <h4 class="serieKpi">The Boys - Quantidade de Avaliações: <span class="notaKpi">54</span></h4>
+                    <h4 class="serieKpi" id="serieMaisAvaliada"></h4>
                 </div>
                 <div class="kpi2">
                     <h3 class="tituloKpi">Série <span class="descKpi">mais bem avaliada</span></h3>
 
-                    <h4 class="serieKpi" id="serieMaisAvaliada"></h4>
+                    <h4 class="serieKpi" id="serieMaisBemAvaliada"></h4>
                 </div>
                 <div class="kpi3">
                     <h3 class="tituloKpi">Série <span class="descKpi">mais rejeitada</span></h3>
@@ -72,13 +72,33 @@
         b_usuario.innerHTML = nome;
     }
 
-    function puxarKpiMaior(){
+    function puxarKpiMaisAvaliacoes(){
         fetch(`/series/kpiMaisAvaliada`).then(function (response) {
             if (response.ok) {
                 response.json().then(function (resposta) {
                     console.log(`Dados KPI recebidas: ${JSON.stringify(resposta)}`);
                     for (let i = 0; i < resposta.length; i++) {
                         serieMaisAvaliada.innerHTML += `
+                            ${resposta[i].nome_serie_avaliacao} - Quantidade de Avaliações: <span class="notaKpi">${resposta[i].quantidade_avaliacoes}</span>
+                        `;
+                    }
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados: ${error.message}`);
+            });
+    }
+
+    function puxarKpiMaior(){
+        fetch(`/series/kpiMaisBemAvaliada`).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (resposta) {
+                    console.log(`Dados KPI recebidas: ${JSON.stringify(resposta)}`);
+                    for (let i = 0; i < resposta.length; i++) {
+                        serieMaisBemAvaliada.innerHTML += `
                             ${resposta[i].nome_serie_avaliacao} - Média das notas: <span class="notaKpi">${resposta[i].media_notas}</span>
                         `;
                     }
