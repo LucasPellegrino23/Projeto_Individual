@@ -83,6 +83,12 @@ function buscarGenero(req, res){
     })
 }
 
+function buscarAvaliacao(req, res){
+    serieModel.buscarAvaliacao().then((resultado) =>{
+        res.status(200).json(resultado);
+    })
+}
+
 function listarSerieAcao(req, res){
     serieModel.listarSerieAcao().then((resultado) =>{
         res.status(200).json(resultado);
@@ -178,5 +184,5 @@ function buscarSeriePorNome(req, res) {
 }
 
 module.exports = {
-    cadastrarSerie, avaliarSerie, buscarGenero, listarSerieAcao, listarSerieTerror, listarSerieComedia, listarSerieSerialKiller, listarSerieDorama, listarSerieFiccao, listarSerieFiccaoCientifica, listarSerieSuspense, kpiMaisBemAvaliada, kpiMaisAvaliada, kpiMenosAvaliada, buscarSeriePorNome
+    cadastrarSerie, avaliarSerie, buscarGenero, buscarAvaliacao, listarSerieAcao, listarSerieTerror, listarSerieComedia, listarSerieSerialKiller, listarSerieDorama, listarSerieFiccao, listarSerieFiccaoCientifica, listarSerieSuspense, kpiMaisBemAvaliada, kpiMaisAvaliada, kpiMenosAvaliada, buscarSeriePorNome
 }

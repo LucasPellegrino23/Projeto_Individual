@@ -13,7 +13,7 @@
     <script src="../js/sessao.js"></script>
     <script src="../js/alerta.js"></script>
 
-<body onload="validarSessao(); obterDadosGrafico(); puxarKpiMaior(), puxarKpiMenor(), puxarKpiMaisAvaliacoes()">
+<body onload="validarSessao(); obterDadosGrafico(); obterDadosGrafico2(); puxarKpiMaior(), puxarKpiMenor(), puxarKpiMaisAvaliacoes()">
 
     <div class="containerPagina">
         <div class="navegacao">
@@ -57,6 +57,11 @@
             <div class="grafico">
                 <h3>Gêneros com mais avaliações</h3>
                 <canvas class="graficoJs" id="myChart"></canvas>
+            </div>
+
+            <div class="grafico">
+                <h3>Séries de cada gênero com mais avaliações</h3>
+                <canvas class="graficoJs2" id="myChart2"></canvas>
             </div>
         </div>
     </div>
@@ -133,7 +138,6 @@
     }
 
     function obterDadosGrafico() {
-
         fetch(`/series/buscarGenero`).then(function (response) {
             if (response.ok) {
                 response.json().then(function (resposta) {
@@ -152,37 +156,16 @@
             });
     }
 
-    // Esta função *plotarGrafico* usa os dados capturados na função anterior para criar o gráfico
-    // Configura o gráfico (cores, tipo, etc), materializa-o na página e,
-    // A função *plotarGrafico* também invoca a função *atualizarGrafico*
     function plotarGrafico(resposta) {
 
         console.log('iniciando plotagem do gráfico...');
 
-        // Criando estrutura para plotar gráfico - labels
         let labels = [];
 
-        // Criando estrutura para plotar gráfico - dados
         let dados = {
-            // labels: labels,
-            // datasets: [{
-            //     label: 'Umidade',
-            //     data: [],
-            //     fill: false,
-            //     borderColor: 'rgb(75, 192, 192)',
-            //     tension: 0.1
-            // },
-            // {
-            //     label: 'Temperatura',
-            //     data: [],
-            //     fill: false,
-            //     borderColor: 'rgb(199, 52, 52)',
-            //     tension: 0.1
-            // }]
-
             labels: labels,
             datasets: [{
-                label: 'Gênero',
+                label: 'Quantidade de avaliações',
                 backgroundColor: '#037eeb',
                 borderColor: '#0d2c82',
                 data: [],
@@ -194,7 +177,6 @@
         console.log('Estes dados foram recebidos pela funcao "obterDadosGrafico" e passados para "plotarGrafico":')
         console.log(resposta)
 
-        // Inserindo valores recebidos em estrutura para plotar o gráfico
         for (i = 0; i < resposta.length; i++) {
             var registro = resposta[i];
             labels.push(registro.genero);//lista laabels
@@ -209,7 +191,6 @@
         console.log(dados.datasets)
         console.log('----------------------------------------------')
 
-        // Criando estrutura para plotar gráfico - config
         const config = {
             type: 'bar',
             data: dados,
@@ -224,6 +205,74 @@
         //setTimeout(() => atualizarGrafico(idAquario, dados, myChart), 2000);
     }
 
+    function obterDadosGrafico2() {
+        fetch(`/series/buscarAvaliacao`).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (resposta) {
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                    resposta.reverse();
+
+                    plotarGrafico2(resposta);
+
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+            });
+    }
+
+    function plotarGrafico2(resposta) {
+
+        console.log('iniciando plotagem do gráfico...');
+
+        let labels = [];
+
+        let dados = {
+            labels: labels,
+            datasets: [{
+                label: 'Avaliações',
+                backgroundColor: '#037eeb',
+                borderColor: '#0d2c82',
+                data: [],
+            },
+            ]
+        };
+
+        console.log('----------------------------------------------')
+        console.log('Estes dados foram recebidos pela funcao "obterDadosGrafico" e passados para "plotarGrafico":')
+        console.log(resposta)
+
+        for (i = 0; i < resposta.length; i++) {
+            var registro = resposta[i];
+            labels.push(registro.nome_serie_avaliacao);//lista laabels
+            dados.datasets[0].data.push(registro.qtd_avaliacao);
+        }
+
+        console.log('----------------------------------------------')
+        console.log('O gráfico será plotado com os respectivos valores:')
+        console.log('Labels:')
+        console.log(labels)
+        console.log('Dados:')
+        console.log(dados.datasets)
+        console.log('----------------------------------------------')
+
+        const config = {
+            type: 'bar',
+            data: dados,
+            options: {}
+        };
+
+        const myChart = new Chart(
+            document.getElementById('myChart2'),
+            config
+        );
+
+        //setTimeout(() => atualizarGrafico(idAquario, dados, myChart), 2000);
+    }
+
 
     // Esta função *atualizarGrafico* atualiza o gráfico que foi renderizado na página,
     // buscando a última medida inserida em tabela contendo as capturas,
@@ -231,9 +280,6 @@
     //     Se quiser alterar a busca, ajuste as regras de negócio em src/controllers
     //     Para ajustar o "select", ajuste o comando sql em src/models
     // function atualizarGrafico(idAquario, dados, myChart) {
-
-
-
     //     fetch(`/medidas/tempo-real/${idAquario}`, { cache: 'no-store' }).then(function (response) {
     //         if (response.ok) {
     //             response.json().then(function (novoRegistro) {

@@ -15,6 +15,10 @@ router.get("/buscarGenero", function(req, res){
     serieController.buscarGenero(req, res);
 })
 
+router.get("/buscarAvaliacao", function(req, res){
+    serieController.buscarAvaliacao(req, res);
+})
+
 // router.get("/kpiMaisAvaliada", function(req, res){
 //     serieController.kpiMaisAvaliada(req, res);
 // })
