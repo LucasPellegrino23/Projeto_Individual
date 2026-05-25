@@ -48,18 +48,6 @@ function buscarAvaliacao() {
     return database.executar(instrucaoSql1);
 }
 
-// function kpiMaisBemAvaliada() {
-//     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrarSerie():",);
-
-//     var instrucaoSql1 = `
-//         SELECT nome_serie, AVG(nota_serie) AS media_avaliacao FROM serie JOIN avaliacao ON serie.id_serie = avaliacao.fk_serie GROUP BY nome_serie;
-//     `;
-
-//     console.log("Executando SQL 1: \n" + instrucaoSql1);
-
-//     return database.executar(instrucaoSql1);
-// }
-
 function listarSerieAcao() {
     console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrarSerie():",);
 

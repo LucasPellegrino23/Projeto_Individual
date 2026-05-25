@@ -19,10 +19,6 @@ router.get("/buscarAvaliacao", function(req, res){
     serieController.buscarAvaliacao(req, res);
 })
 
-// router.get("/kpiMaisAvaliada", function(req, res){
-//     serieController.kpiMaisAvaliada(req, res);
-// })
-
 router.get("/listarSerieAcao", function(req, res){
     serieController.listarSerieAcao(req, res);
 })

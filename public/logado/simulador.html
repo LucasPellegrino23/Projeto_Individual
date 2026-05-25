@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SeriesTV | Simulador</title>
+
+    <script src="./js/sessao.js"></script>
+
+    <link rel="stylesheet" href="../css/styleLogador.css">
+    <link rel="icon" href="./assets/icon/favicon2.ico">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+</head>
+
+<body onload="validarSessao()">
+    <div class="containerPagina">
+        <div class="navegacao">
+            <div class="divLogo">
+                <img src="../assets/logo.png" alt="Logo SeriesTv">
+            </div>
+            <h3 class="h3Ola">Olá, <span id="b_usuario"></span>!</h3>
+
+            <div class="divLinks">
+                <a class="links" href="./perfil.html"><button>Perfil do Usuário</button></a>
+                <a href="./avaliarExistente.html" class="links"><button>Avaliar Séries Existentes</button></a>
+                <a class="links" href="./cadastrarSerie.html"><button>Cadastrar Séries</button></a>
+                <a class="links" href="./dashboard.html"><button>Dashboard</button></a>
+                <a class="links" href="./avaliacoesAcao.html"><button>Avaliações</button></a>
+                <a class="links" href="./simulador.html"><button class="ative">Simulador de Séries</button></a>
+                <h3 onclick="limparSessao()"><a href="../index.html">Sair</a></h3>
+            </div>
+        </div>
+
+        <div class="containerSimulador">
+            <div class="simulacao">
+                <h1>Simulador de Séries</h1>
+
+                <div class="divInputsSimulador">
+                    <h3>Nom Série:</h3>
+                    <input type="number" id="ipt_nome_serie">
+                </div>
+                <div class="divInputsSimulador">
+                    <h3>Quantidade de Episódios:</h3>
+                    <input type="number" id="ipt_qtd_eps">
+                </div>
+                <div class="divInputsSimulador">
+                    <h3>Tempo Médio dos Episódios (em minutos):</h3>
+                    <input type="number" id="ipt_tempo_medio_eps">
+                </div>
+                <div class="divInputsSimulador">
+                    <h3>Em quantas semanas você quer terminar a série:</h3>
+                    <input type="number" id="ipt_qtd_semanas">
+                </div>
+
+                <button onclick="simular()">Simular</button>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+<script>
+    function validarSessao() {
+        var nome = sessionStorage.NOME_USUARIO;
+        b_usuario.innerHTML = nome;
+    }
+
+</script>
