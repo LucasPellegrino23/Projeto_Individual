@@ -554,8 +554,9 @@ body {
 }
 
 .imagemAvaliacao{
-    width: 250px;
-    height: 250px;
+    flex: 0 0 12em;
+    height: 18em;
+    width: 18em;
     object-fit: cover;
     object-position: center;
     text-align: center;
