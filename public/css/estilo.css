@@ -823,3 +823,73 @@ body {
 }
 
 /* Fim Login */
+
+/* Começo Simulador */
+.containerSimulador{
+    display: flex;
+    flex-direction: column;
+    font-family: "IBM Plex Sans";
+    width: 100%;
+    align-items: center;
+}
+
+.containerSimulador p{
+    margin-top: 10px;
+    color: #000;
+    font-size: 17px;
+    text-align: center;
+}
+
+.simulacao{
+    margin-top: 25px;
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    height: 500px;
+    justify-content: space-around;
+    background-color: #fff;
+    padding: 20px;
+}
+
+.simulacao input{
+    width: 100%;
+    height: 30px;
+    border-radius: 10px;
+    background-color: #d8d8d8;
+    border: none;
+    padding-left: 10px;
+}
+
+.simulacao hr{
+    margin-top: -20px;
+    height: 5px;
+    background-color: #037eeb;
+    width: 110px;
+    border: none;
+}
+
+.simulacao button{
+    height: 45px;
+    background-color: #037eeb;
+    border: none;
+    color: #fff;
+    font-size: 18px;
+    transition: all 1s;
+    cursor: pointer;
+}
+
+.simulacao button:hover{
+    transform: scale(1.05);
+    background-color: #0d2c82;
+}
+
+#div_msg{
+    text-align: center;
+    font-size: 16px;
+    font-weight: bolder ;
+}
+
+.span_msg{
+    color: #037eeb;
+}
+/* Fim Simulador */
