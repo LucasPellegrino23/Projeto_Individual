@@ -37,26 +37,31 @@
         <div class="containerSimulador">
             <div class="simulacao">
                 <h1>Simulador de Séries</h1>
+                <hr>
 
                 <div class="divInputsSimulador">
-                    <h3>Nom Série:</h3>
-                    <input type="number" id="ipt_nome_serie">
+                    <h3>Nome Série:</h3>
+                    <input type="text" id="ipt_nome_serie">
                 </div>
                 <div class="divInputsSimulador">
                     <h3>Quantidade de Episódios:</h3>
-                    <input type="number" id="ipt_qtd_eps">
+                    <input type="text" id="ipt_qtd_eps">
                 </div>
                 <div class="divInputsSimulador">
                     <h3>Tempo Médio dos Episódios (em minutos):</h3>
-                    <input type="number" id="ipt_tempo_medio_eps">
+                    <input type="text" id="ipt_tempo_medio_eps">
                 </div>
                 <div class="divInputsSimulador">
                     <h3>Em quantas semanas você quer terminar a série:</h3>
-                    <input type="number" id="ipt_qtd_semanas">
+                    <input type="text" id="ipt_qtd_semanas">
                 </div>
 
                 <button onclick="simular()">Simular</button>
+
+                <div id="div_msg"></div>
             </div>
+
+            <p>Vale Ressaltar que esse simulador, não é 100% preciso, <br> sendo uma previsão de tempo</p>
         </div>
     </div>
 </body>
@@ -68,4 +73,21 @@
         b_usuario.innerHTML = nome;
     }
 
+
+    function simular(){
+        let nomeSerie = ipt_nome_serie.value;
+        let qtdEpisodios = Number(ipt_qtd_eps.value);
+        let tempoMedio = Number(ipt_tempo_medio_eps.value);
+        let qtdSemanas = Number(ipt_qtd_semanas.value);
+
+        let totalMinutos = qtdEpisodios * tempoMedio;
+
+        let totalMinutosSemanas = (totalMinutos / qtdSemanas);
+
+        let totalMinutosDia = totalMinutosSemanas / 7;
+
+        let totalEpsDia = totalMinutosDia / tempoMedio;
+
+        div_msg.innerHTML = `Você tem que assitir aproximadamente <span class="span_msg">${totalEpsDia.toFixed(2)}</span> episódio(s) por dia para terminar em <span class="span_msg">${qtdSemanas}</span> semanas`;
+    }
 </script>
