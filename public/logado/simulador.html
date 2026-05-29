@@ -36,7 +36,7 @@
 
         <div class="containerSimulador">
             <div class="simulacao">
-                <h1>Simulador de Séries</h1>
+                <h1>Simulador de Séries que queira assistir</h1>
                 <hr>
 
                 <div class="divInputsSimulador">
@@ -88,6 +88,6 @@
 
         let totalEpsDia = totalMinutosDia / tempoMedio;
 
-        div_msg.innerHTML = `Você tem que assitir aproximadamente <span class="span_msg">${totalEpsDia.toFixed(2)}</span> episódio(s) por dia para terminar em <span class="span_msg">${qtdSemanas}</span> semanas`;
+        div_msg.innerHTML = `Para assistir a série ${nomeSerie}, você tem que assitir aproximadamente <span class="span_msg">${totalEpsDia.toFixed(2)}</span> episódio(s) por dia para terminar em <span class="span_msg">${qtdSemanas}</span> semanas`;
     }
 </script>
