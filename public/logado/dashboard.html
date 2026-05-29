@@ -13,7 +13,8 @@
     <script src="../js/sessao.js"></script>
     <script src="../js/alerta.js"></script>
 
-<body onload="validarSessao(); obterDadosGrafico(); obterDadosGrafico2(); puxarKpiMaior(), puxarKpiMenor(), puxarKpiMaisAvaliacoes()">
+<body
+    onload="validarSessao(); obterDadosGrafico(); obterDadosGrafico2(); puxarKpiMaior(), puxarKpiMenor(), puxarKpiMaisAvaliacoes()">
 
     <div class="containerPagina">
         <div class="navegacao">
@@ -78,7 +79,7 @@
         b_usuario.innerHTML = nome;
     }
 
-    function puxarKpiMaisAvaliacoes(){
+    function puxarKpiMaisAvaliacoes() {
         fetch(`/series/kpiMaisAvaliada`).then(function (response) {
             if (response.ok) {
                 response.json().then(function (resposta) {
@@ -98,7 +99,7 @@
             });
     }
 
-    function puxarKpiMaior(){
+    function puxarKpiMaior() {
         fetch(`/series/kpiMaisBemAvaliada`).then(function (response) {
             if (response.ok) {
                 response.json().then(function (resposta) {
@@ -118,7 +119,7 @@
             });
     }
 
-    function puxarKpiMenor(){
+    function puxarKpiMenor() {
         fetch(`/series/kpiMenosAvaliada`).then(function (response) {
             if (response.ok) {
                 response.json().then(function (resposta) {
@@ -196,20 +197,26 @@
             type: 'bar',
             data: dados,
             options: {
-                plugins: {
-    legend: {
-      labels: {
-        color: 'red' // Cor cinza escuro para a legenda
-      }
-    }
-  }
+                scales: {
+                    x: {
+                        ticks: {
+                            color: '#FF0000' // Cor vermelha para o eixo X
+                        }
+                    },
+                    y: {
+                        ticks: {
+                            color: '#0000FF' // Cor azul para o eixo Y
+                        }
+                    }
+                }
             }
-        };
+        }
+    };
 
-        const myChart = new Chart(
-            document.getElementById('myChart'),
-            config
-        );
+    const myChart = new Chart(
+        document.getElementById('myChart'),
+        config
+    );
 
         //setTimeout(() => atualizarGrafico(idAquario, dados, myChart), 2000);
     }
