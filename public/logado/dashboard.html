@@ -13,8 +13,7 @@
     <script src="../js/sessao.js"></script>
     <script src="../js/alerta.js"></script>
 
-<body
-    onload="validarSessao(); obterDadosGrafico(); obterDadosGrafico2(); puxarKpiMaior(), puxarKpiMenor(), puxarKpiMaisAvaliacoes()">
+<body onload="validarSessao(); obterDadosGrafico(); obterDadosGrafico2(); puxarKpiMaior(), puxarKpiMenor(), puxarKpiMaisAvaliacoes()">
 
     <div class="containerPagina">
         <div class="navegacao">
@@ -79,7 +78,7 @@
         b_usuario.innerHTML = nome;
     }
 
-    function puxarKpiMaisAvaliacoes() {
+    function puxarKpiMaisAvaliacoes(){
         fetch(`/series/kpiMaisAvaliada`).then(function (response) {
             if (response.ok) {
                 response.json().then(function (resposta) {
@@ -99,7 +98,7 @@
             });
     }
 
-    function puxarKpiMaior() {
+    function puxarKpiMaior(){
         fetch(`/series/kpiMaisBemAvaliada`).then(function (response) {
             if (response.ok) {
                 response.json().then(function (resposta) {
@@ -119,7 +118,7 @@
             });
     }
 
-    function puxarKpiMenor() {
+    function puxarKpiMenor(){
         fetch(`/series/kpiMenosAvaliada`).then(function (response) {
             if (response.ok) {
                 response.json().then(function (resposta) {
@@ -197,13 +196,13 @@
             type: 'bar',
             data: dados,
             options: {}
-        }
-    };
+        };
 
-    const myChart = new Chart(
-        document.getElementById('myChart'),
-        config
-    );    
+        const myChart = new Chart(
+            document.getElementById('myChart'),
+            config
+        );
+    }
 
     function obterDadosGrafico2() {
         fetch(`/series/buscarAvaliacao`).then(function (response) {
