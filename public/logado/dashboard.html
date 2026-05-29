@@ -195,7 +195,15 @@
         const config = {
             type: 'bar',
             data: dados,
-            options: {}
+            options: {
+                plugins: {
+    legend: {
+      labels: {
+        color: 'red' // Cor cinza escuro para a legenda
+      }
+    }
+  }
+            }
         };
 
         const myChart = new Chart(
