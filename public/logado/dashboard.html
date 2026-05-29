@@ -216,10 +216,7 @@
     const myChart = new Chart(
         document.getElementById('myChart'),
         config
-    );
-
-        //setTimeout(() => atualizarGrafico(idAquario, dados, myChart), 2000);
-    }
+    );    
 
     function obterDadosGrafico2() {
         fetch(`/series/buscarAvaliacao`).then(function (response) {
