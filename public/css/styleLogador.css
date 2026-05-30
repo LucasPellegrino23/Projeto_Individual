@@ -252,6 +252,7 @@ body {
     flex-direction: column;
     gap: 20px;
     width: 45%;
+    margin-top: 20px;
 }
 
 .inputBaseSerie input {
@@ -273,6 +274,7 @@ body {
     flex-direction: column;
     gap: 20px;
     width: 100%;
+    margin-top: 20px;
 }
 
 .inputImagemSerie input {
@@ -317,6 +319,7 @@ body {
     flex-direction: column;
     gap: 20px;
     width: 100%;
+    margin-top: 20px;
 }
 
 .inputBaseSerieNota input{
@@ -338,6 +341,7 @@ body {
     flex-direction: column;
     gap: 20px;
     width: 100%;
+    margin-top: 20px;
 }
 
 .inputSinopseSerie {
@@ -345,6 +349,7 @@ body {
     flex-direction: column;
     gap: 20px;
     width: 100%;
+    margin-top: 20px;
 }
 
 .inputSinopseSerie textarea {

@@ -118,9 +118,6 @@
         var imagemCapaSerieVar = imagem_serie_input.value;
         var idUsuarioVar = sessionStorage.ID_USUARIO
 
-        var numeros = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
-
-
         if (nomeSerieVar !== '' && generoVar !== '' && qtdEpisodiosVar !== '' && sinopseVar !== '' && imagemCapaSerieVar !== '') {
             fetch("/series/cadastrarSerie", {
                 method: "POST",
