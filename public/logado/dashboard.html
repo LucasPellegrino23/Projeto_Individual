@@ -138,6 +138,8 @@
             });
     }
 
+    Chart.defaults.color = '#FFF';
+    
     function obterDadosGrafico() {
         fetch(`/series/buscarGenero`).then(function (response) {
             if (response.ok) {
