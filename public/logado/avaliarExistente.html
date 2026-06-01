@@ -88,8 +88,6 @@
             alert("Preencha o campo")
             document.getElementById("avaliacaoSerieExistente").style.display = "none";
         } else{
-            document.getElementById("avaliacaoSerieExistente").style.display = "block";
-
             fetch("/series/buscarSeriePorNome", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -99,6 +97,7 @@
                 resposta.json().then(json => {
                     if (json.encontrado) {
                         idSerieEncontrada = json.id_serie;
+                        document.getElementById("avaliacaoSerieExistente").style.display = "block";
                         feedback_serie.innerHTML = `Série "${json.nome_serie}" encontrada!`;
                         feedback_serie.style.color = "green";
                     } else {
