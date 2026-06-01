@@ -143,7 +143,6 @@
             if (response.ok) {
                 response.json().then(function (resposta) {
                     console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-                    resposta.reverse();
 
                     plotarGrafico(resposta);
 
@@ -209,7 +208,6 @@
             if (response.ok) {
                 response.json().then(function (resposta) {
                     console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-                    resposta.reverse();
 
                     plotarGrafico2(resposta);
 
