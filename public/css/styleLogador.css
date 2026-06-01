@@ -461,7 +461,7 @@ body {
 }
 
 .buttonsAvaliacoes {
-    height: 10vh;
+    height: 15vh;
     display: flex;
     flex-direction: row;
     align-items: center;
