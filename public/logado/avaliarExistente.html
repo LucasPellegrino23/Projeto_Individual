@@ -48,19 +48,22 @@
                         <button onclick="buscarSerie()">Buscar Série</button>
                     </div>
 
-                    <div class="inputAvaliacaoSerie">
-                        <span>Avaliação</span>
-                        <textarea id="avaliacao_input" type="text" placeholder="Digite a avaliação da série"></textarea>
-                    </div>
-                    <div class="inputBaseSerieNota">
-                        <span>Nota da Série</span>
-                        <input id="nota_serie_input" type="number" placeholder="0.0">
+                    <div id="avaliacaoSerieExistente">
+                        <div class="inputAvaliacaoSerie">
+                            <span>Avaliação</span>
+                            <textarea id="avaliacao_input" type="text"
+                                placeholder="Digite a avaliação da série"></textarea>
+                        </div>
+                        <div class="inputBaseSerieNota">
+                            <span>Nota da Série</span>
+                            <input id="nota_serie_input" type="number" placeholder="0.0">
+                        </div>
+                        <div class="buttonSerie">
+                            <button onclick="avaliar()">Avaliar Série</button>
+                        </div>
                     </div>
                 </div>
 
-                <div class="buttonSerie">
-                    <button onclick="avaliar()">Avaliar Série</button>
-                </div>
             </div>
         </div>
     </div>
@@ -70,7 +73,9 @@
 
 <script>
     var idSerieEncontrada = null;
-        
+
+    document.getElementById("avaliacaoSerieExistente").style.display = "none";
+
     function validarSessao() {
         var nome = sessionStorage.NOME_USUARIO;
         b_usuario.innerHTML = nome;
@@ -100,13 +105,15 @@
                 });
             })
             .catch(erro => console.log("#ERRO:", erro));
+            
+            document.getElementById("avaliacaoSerieExistente").style.display = "block";
     }
 
     function avaliar() {
         var avaliacaoVar = avaliacao_input.value;
         var notaVar = nota_serie_input.value;
         var idUsuarioVar = sessionStorage.ID_USUARIO;
-        var nomeSerieVar = nome_serie_existente_input.value; 
+        var nomeSerieVar = nome_serie_existente_input.value;
 
         if (idSerieEncontrada == null) {
             alert("Busque uma série válida antes de avalia-lá!");
@@ -122,18 +129,18 @@
                     notaServer: notaVar,
                     idUsuarioServer: idUsuarioVar,
                     fkSerieServer: idSerieEncontrada,
-                    nomeDaSerieServer: nomeSerieVar   
+                    nomeDaSerieServer: nomeSerieVar
                 }),
             })
-            .then(function (resposta) {
-                if (resposta.ok) {
-                    alert("Avaliação realizada com sucesso! Redirecionando para a tela da dashboard...");
-                    setTimeout(() => { window.location = "dashboard.html"; }, 500);
-                } else {
-                    throw "Erro ao avaliar a série existente!";
-                }
-            })
-            .catch(erro => console.log("#ERRO:", erro));
+                .then(function (resposta) {
+                    if (resposta.ok) {
+                        alert("Avaliação realizada com sucesso! Redirecionando para a tela da dashboard...");
+                        setTimeout(() => { window.location = "dashboard.html"; }, 500);
+                    } else {
+                        throw "Erro ao avaliar a série existente!";
+                    }
+                })
+                .catch(erro => console.log("#ERRO:", erro));
 
             return false;
         }
