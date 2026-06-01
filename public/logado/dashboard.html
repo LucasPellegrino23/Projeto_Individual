@@ -61,7 +61,7 @@
             </div>
 
             <div class="grafico">
-                <h3>Séries com mais bem avaliadas</h3>
+                <h3>Séries mais bem avaliadas</h3>
                 <canvas class="graficoJs2" id="myChart2"></canvas>
             </div>
         </div>
@@ -247,7 +247,7 @@
         for (i = 0; i < resposta.length; i++) {
             var registro = resposta[i];
             labels.push(registro.nome_serie_avaliacao);//lista laabels
-            dados.datasets[0].data.push(registro.media_avalaicoes);
+            dados.datasets[0].data.push(registro.media_notas);
         }
 
         console.log('----------------------------------------------')
