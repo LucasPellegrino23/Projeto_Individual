@@ -84,14 +84,13 @@
     function buscarSerie() {
         var nomeSerieVar = nome_serie_existente_input.value;
 
-        if(nomeSerieVar == ''){
+        if(nomeSerieVar == '' && idSerieEncontrada == null){
             alert("Preencha o campo")
             document.getElementById("avaliacaoSerieExistente").style.display = "none";
         } else{
             document.getElementById("avaliacaoSerieExistente").style.display = "block";
-        }
 
-        fetch("/series/buscarSeriePorNome", {
+            fetch("/series/buscarSeriePorNome", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ nomeSerieServer: nomeSerieVar }),
@@ -110,6 +109,7 @@
                 });
             })
             .catch(erro => console.log("#ERRO:", erro));
+        }
             
     }
 
