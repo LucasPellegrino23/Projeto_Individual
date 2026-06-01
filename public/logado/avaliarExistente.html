@@ -84,7 +84,7 @@
     function buscarSerie() {
         var nomeSerieVar = nome_serie_existente_input.value;
 
-        if(nomeSerieVar == '' && idSerieEncontrada == null){
+        if(nomeSerieVar == ''){
             alert("Preencha o campo")
             document.getElementById("avaliacaoSerieExistente").style.display = "none";
         } else{
@@ -103,6 +103,7 @@
                         feedback_serie.style.color = "green";
                     } else {
                         idSerieEncontrada = null;
+                        document.getElementById("avaliacaoSerieExistente").style.display = "none";
                         feedback_serie.innerHTML = `Série não encontrada, cadastre e avalie!`;
                         feedback_serie.style.color = "red";
                     }
