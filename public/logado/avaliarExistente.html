@@ -84,7 +84,12 @@
     function buscarSerie() {
         var nomeSerieVar = nome_serie_existente_input.value;
 
-        if (nomeSerieVar == '') return;
+        if(nomeSerieVar == ''){
+            alert("Preencha o campo")
+            document.getElementById("avaliacaoSerieExistente").style.display = "none";
+        } else{
+            document.getElementById("avaliacaoSerieExistente").style.display = "block";
+        }
 
         fetch("/series/buscarSeriePorNome", {
             method: "POST",
@@ -106,7 +111,6 @@
             })
             .catch(erro => console.log("#ERRO:", erro));
             
-            document.getElementById("avaliacaoSerieExistente").style.display = "block";
     }
 
     function avaliar() {
