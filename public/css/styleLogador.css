@@ -481,12 +481,12 @@ body {
     font-weight: 900;
     color: #000000;
     font-size: 15px; 
-    margin-top: 15px;
 }
 
 
 .buttonsAvaliacoes a {
     text-decoration: none;   
+    margin: 10px;
 }
 
 .buttonsAvaliacoes h3 a{
